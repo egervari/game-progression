@@ -4,38 +4,38 @@
       <Label>
         Platform
       </Label>
-      <select>
+      <Select>
         <option>All</option>
-      </select>
+      </Select>
     </FormField>
 
     <FormField>
       <Label>
         Completion
       </Label>
-      <select>
+      <Select>
         <option>All</option>
-      </select>
+      </Select>
     </FormField>
 
     <FormField>
       <Label>
         Sort
       </Label>
-      <select>
+      <Select>
         <option>Priority</option>
-      </select>
+      </Select>
     </FormField>
 
     <FormField>
       <Label>
         Search
       </Label>
-      <input />
+      <Input placeholder="Enter a game name..." />
     </FormField>
 
-    <button>Add Game</button>
-    <button>Delete Games</button>
+    <Button type="normal">Add Game</Button>
+    <Button type="warn">Delete Games</Button>
   </Pane>
 </template>
 
@@ -43,10 +43,13 @@
   import FormField from '../../ui/components/FormField';
   import Label from '../../ui/components/Label';
   import Pane from '../../ui/components/Pane';
+  import Button from "@/app/modules/ui/components/Button";
+  import Input from "@/app/modules/ui/components/Input";
+  import Select from "@/app/modules/ui/components/Select";
 
   export default {
     name: 'GameFilters',
-    components: { FormField, Label, Pane }
+    components: {Select, Input, Button, FormField, Label, Pane }
   }
 </script>
 
