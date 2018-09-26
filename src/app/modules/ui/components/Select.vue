@@ -1,12 +1,19 @@
 <template>
-  <select class="select">
+  <select class="select"
+          v-on:change="onChange">
     <slot></slot>
   </select>
 </template>
 
 <script>
   export default {
-    name: 'Select'
+    name: 'Select',
+    event: 'change',
+    methods: {
+      onChange: function(event) {
+        this.$emit('change', event.target.value);
+      }
+    }
   }
 </script>
 

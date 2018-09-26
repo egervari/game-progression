@@ -4,8 +4,13 @@
       <Label>
         Platform
       </Label>
-      <Select>
-        <option>All</option>
+      <Select v-model="filters.platform"
+              v-on:change="onPlatformFilterChanged">
+        <option :value="null">All</option>
+        <option v-for="platform in platforms"
+                :value="platform.id">
+          {{ platform.name }}
+        </option>
       </Select>
     </FormField>
 
@@ -13,8 +18,11 @@
       <Label>
         Completion
       </Label>
-      <Select>
-        <option>All</option>
+      <Select v-model="filters.completion"
+              v-on:change="onCompletionFilterChanged">
+        <option value="all">All</option>
+        <option value="complete">Complete</option>
+        <option value="not-complete">Not Complete</option>
       </Select>
     </FormField>
 
@@ -22,8 +30,10 @@
       <Label>
         Sort
       </Label>
-      <Select>
-        <option>Priority</option>
+      <Select v-model="filters.sortBy"
+              v-on:change="onSortByChanged">
+        <option value="priority">Priority</option>
+        <option value="dateCreated">Date Created</option>
       </Select>
     </FormField>
 
@@ -31,7 +41,9 @@
       <Label>
         Search
       </Label>
-      <Input placeholder="Enter a game name..." />
+      <Input placeholder="Enter a game name..."
+             v-model="filters.searchText"
+             v-on:change="onSearchTextChanged" />
     </FormField>
 
     <Button type="normal">Add Game</Button>
@@ -50,7 +62,24 @@
   export default {
     name: 'GameFilters',
     components: {Select, Input, Button, FormField, Label, Pane },
-    props: ['platforms']
+    props: ['filters', 'platforms'],
+    methods: {
+      onPlatformFilterChanged: function(platform) {
+        this.$store.dispatch('setPlatformFilter', Number(platform));
+      },
+
+      onCompletionFilterChanged: function(completion) {
+        this.$store.dispatch('setCompletionFilter', completion);
+      },
+
+      onSortByChanged: function(sortBy) {
+        this.$store.dispatch('setSortBy', sortBy);
+      },
+
+      onSearchTextChanged: function(searchText) {
+        this.$store.dispatch('setSearchText', searchText);
+      }
+    }
   }
 </script>
 

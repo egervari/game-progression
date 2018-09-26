@@ -1,6 +1,7 @@
 <template>
   <section id="games">
-    <GameFilters v-bind:platforms="platforms">
+    <GameFilters v-bind:filters="filters"
+                 v-bind:platforms="platforms">
     </GameFilters>
     <GameListing v-bind:games="games"
                  v-bind:platforms="platforms">
@@ -25,6 +26,9 @@
       },
       platforms: function() {
         return this.$store.state.gamesState.platforms;
+      },
+      filters: function() {
+        return this.$store.state.gamesState.filters;
       }
     }
   }

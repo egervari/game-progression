@@ -1,12 +1,19 @@
 <template>
   <input class="input"
-         :placeholder="placeholder" />
+         :placeholder="placeholder"
+         v-on:change="onChange" />
 </template>
 
 <script>
   export default {
     name: 'Input',
-    props: ['placeholder']
+    props: ['placeholder'],
+    event: 'change',
+    methods: {
+      onChange: function(event) {
+        this.$emit('change', event.target.value);
+      }
+    }
   }
 </script>
 
