@@ -1,8 +1,10 @@
 <template>
   <article class="game-card">
-    <GameCardCompletionIndicator></GameCardCompletionIndicator>
-    <GameCardDetails></GameCardDetails>
-    <img src="../../../assets/profile-image.jpg" />
+    <GameCardCompletionIndicator v-bind:game="game"></GameCardCompletionIndicator>
+    <GameCardDetails v-bind:game="game"
+                     v-bind:platforms="platforms">
+    </GameCardDetails>
+    <img :src="game.image" />
   </article>
 </template>
 
@@ -11,7 +13,8 @@
   import GameCardDetails from "@/app/modules/games/components/GameCardDetails";
   export default {
     name: 'GameCard',
-    components: {GameCardDetails, GameCardCompletionIndicator}
+    components: {GameCardDetails, GameCardCompletionIndicator},
+    props: ['game', 'platforms']
   }
 </script>
 

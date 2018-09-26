@@ -1,7 +1,10 @@
 <template>
   <section id="games">
-    <GameFilters></GameFilters>
-    <GameListing></GameListing>
+    <GameFilters v-bind:platforms="platforms">
+    </GameFilters>
+    <GameListing v-bind:games="games"
+                 v-bind:platforms="platforms">
+    </GameListing>
   </section>
 </template>
 
@@ -11,6 +14,26 @@
 
   export default {
     name: 'games',
-    components: {GameListing, GameFilters }
+    components: {GameListing, GameFilters },
+    mounted: function() {
+      this.$store.dispatch('retrieveGames');
+      this.$store.dispatch('retrievePlatforms');
+    },
+    computed: {
+      games: function() {
+        return this.$store.state.gamesState.games;
+      },
+      platforms: function() {
+        return this.$store.state.gamesState.platforms;
+      }
+    }
   }
 </script>
+
+<style lang="scss" scoped>
+  section#games {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+</style>

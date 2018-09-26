@@ -1,5 +1,5 @@
 <template>
-  <Pane class="game-filters">
+  <Pane id="game-filters">
     <FormField>
       <Label>
         Platform
@@ -49,10 +49,13 @@
 
   export default {
     name: 'GameFilters',
-    components: {Select, Input, Button, FormField, Label, Pane }
+    components: {Select, Input, Button, FormField, Label, Pane },
+    props: ['platforms']
   }
 </script>
 
 <style lang="scss" scoped>
-
+  #game-filters {
+    flex-shrink: 0;
+  }
 </style>

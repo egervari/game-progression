@@ -1,9 +1,9 @@
 <template>
   <section id="game-listing">
-    <GameCard></GameCard>
-    <GameCard></GameCard>
-    <GameCard></GameCard>
-    <GameCard></GameCard>
+    <GameCard v-for="game in games"
+              v-bind:game="game"
+              v-bind:platforms="platforms">
+    </GameCard>
   </section>
 </template>
 
@@ -11,7 +11,8 @@
   import GameCard from "@/app/modules/games/components/GameCard";
   export default {
     name: 'GameListing',
-    components: {GameCard}
+    components: {GameCard},
+    props: ['games', 'platforms']
   }
 </script>
 
@@ -19,5 +20,18 @@
   #game-listing {
     display: flex;
     flex-wrap: wrap;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(0, 0, 0, 0.10);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.20);
+    }
   }
 </style>

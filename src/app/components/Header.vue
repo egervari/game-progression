@@ -23,6 +23,7 @@
     background: $dark-blue;
     color: $text-on-dark;
     display: flex;
+    flex-shrink: 0;
     justify-content: space-between;
     padding: 0 2rem;
 

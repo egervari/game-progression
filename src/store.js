@@ -9,9 +9,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    dashboardStore,
-    gamesStore,
-    profileStore
+    dashboardState: dashboardStore,
+    gamesState: gamesStore,
+    profileState: profileStore
   },
   state: {
     languages: [],
@@ -38,7 +38,6 @@ export default new Vuex.Store({
         .then(languages => commit('retrieveLanguagesSuccess', languages))
         .catch(error => commit('retrieveLanguagesFailure', error))
     },
-
     retrieveProfile: function({ commit }) {
       fetch('http://localhost:3000/profile')
         .then(response => response.json())
