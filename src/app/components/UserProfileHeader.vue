@@ -1,9 +1,21 @@
 <template>
-  <section id="user-profile-header">
+  <section id="user-profile-header"
+           @click="goToProfile()">
     <img src="../../assets/profile-image.jpg" />
     Katie Egervari
   </section>
 </template>
+
+<script>
+  export default {
+    name: 'UserProfileHeader',
+    methods: {
+      goToProfile: function() {
+        this.$router.push('/profile');
+      }
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   @import '../styles/colors';

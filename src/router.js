@@ -14,12 +14,17 @@ export default new Router({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import(/* webpackChunkName: "dashboard" */ './app/modules/dashboard/Dashboard.vue')
+      component: () => import(/* webpackChunkName: "dashboard" */ './app/modules/dashboard/Dashboard')
     },
     {
       path: '/games',
       name: 'games',
-      component: () => import(/* webpackChunkName: "games" */ './app/modules/games/Games.vue')
+      component: () => import(/* webpackChunkName: "games" */ './app/modules/games/Games')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import(/* webpackChunkName: "games" */ './app/modules/profile/Profile')
     }
   ]
 })

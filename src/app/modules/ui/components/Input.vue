@@ -15,6 +15,7 @@
 
   input.input {
     border: none;
+    background: lighten($text-on-dark, 5%);
     color: $text-on-white;
     flex-grow: 1;
     font-size: 1em;
@@ -22,7 +23,6 @@
     padding: 0.4rem 0.5rem;
 
     &:disabled {
-      background: white;
       opacity: 0.5;
     }
 

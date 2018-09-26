@@ -26,6 +26,8 @@
     padding: 0 2rem;
 
     h1 {
+      font-size: 30px;
+      font-weight: normal;
       margin: 0;
     }
   }
