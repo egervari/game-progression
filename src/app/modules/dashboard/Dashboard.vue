@@ -4,7 +4,7 @@
       <SectionHeader>Your Dashboard</SectionHeader>
     </Pane>
 
-    <DashboardStatistics></DashboardStatistics>
+    <DashboardStatistics v-bind:games="games"></DashboardStatistics>
   </section>
 </template>
 
@@ -15,6 +15,14 @@
 
   export default {
     name: 'dashboard',
-    components: {DashboardStatistics, Pane, SectionHeader }
+    components: {DashboardStatistics, Pane, SectionHeader },
+    mounted: function() {
+      this.$store.dispatch('retrieveDashboardGames');
+    },
+    computed: {
+      games: function() {
+        return this.$store.state.dashboardState.games;
+      }
+    }
   }
 </script>
