@@ -1,0 +1,32 @@
+<template>
+  <header id="header">
+    <h1>Game Progression</h1>
+    <UserProfileHeader></UserProfileHeader>
+  </header>
+</template>
+
+<script>
+  import UserProfileHeader from './UserProfileHeader';
+
+  export default {
+    name: 'Header',
+    components: { UserProfileHeader }
+  }
+</script>
+
+<style lang="scss" scoped>
+  @import '../styles/colors.scss';
+
+  header#header {
+    align-items: center;
+    background: $dark-blue;
+    color: $text-on-dark;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+
+    h1 {
+      margin: 0;
+    }
+  }
+</style>
