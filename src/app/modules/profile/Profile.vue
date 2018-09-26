@@ -5,7 +5,9 @@
       <Button type="normal">Edit</Button>
     </Pane>
 
-    <ProfileDetails></ProfileDetails>
+    <ProfileDetails v-if="profile"
+                    v-bind:profile="profile">
+    </ProfileDetails>
   </section>
 </template>
 
@@ -16,7 +18,12 @@
   import ProfileDetails from "@/app/modules/profile/components/ProfileDetails";
   export default {
     name: 'Profile',
-    components: {ProfileDetails, Button, Pane, SectionHeader}
+    components: {ProfileDetails, Button, Pane, SectionHeader},
+    computed: {
+      profile: function() {
+        return this.$store.state.profile;
+      }
+    }
   }
 </script>
 

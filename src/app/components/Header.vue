@@ -1,7 +1,7 @@
 <template>
   <header id="header">
     <h1>Game Progression</h1>
-    <UserProfileHeader></UserProfileHeader>
+    <UserProfileHeader v-bind:profile="profile"></UserProfileHeader>
   </header>
 </template>
 
@@ -10,7 +10,8 @@
 
   export default {
     name: 'Header',
-    components: { UserProfileHeader }
+    components: { UserProfileHeader },
+    props: ['profile']
   }
 </script>
 

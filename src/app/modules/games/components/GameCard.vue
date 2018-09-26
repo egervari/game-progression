@@ -2,7 +2,7 @@
   <article class="game-card">
     <GameCardCompletionIndicator></GameCardCompletionIndicator>
     <GameCardDetails></GameCardDetails>
-    <img src="../../../../assets/profile-image.jpg" />
+    <img src="../../../assets/profile-image.jpg" />
   </article>
 </template>
 

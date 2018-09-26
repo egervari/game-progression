@@ -1,14 +1,22 @@
 <template>
   <section id="user-profile-header"
            @click="goToProfile()">
-    <img src="../../assets/profile-image.jpg" />
-    Katie Egervari
+    <img src="../assets/profile-image.jpg" />
+    {{ fullName }}
   </section>
 </template>
 
 <script>
   export default {
     name: 'UserProfileHeader',
+    props: ['profile'],
+    computed: {
+      fullName: function() {
+        return this.profile ?
+          this.profile.firstName + ' ' + this.profile.lastName :
+          '';
+      }
+    },
     methods: {
       goToProfile: function() {
         this.$router.push('/profile');

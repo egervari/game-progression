@@ -1,11 +1,11 @@
 <template>
   <Layout>
-    <Header></Header>
+    <Header v-bind:profile="profile"></Header>
     <Navigation></Navigation>
     <MainContent>
       <router-view/>
     </MainContent>
-    <Footer></Footer>
+    <Footer v-bind:languages="languages"></Footer>
   </Layout>
 </template>
 
@@ -17,7 +17,19 @@
   import Navigation from './components/Navigation';
 
   export default {
-    components: { Footer, Header, Layout, MainContent, Navigation }
+    components: { Footer, Header, Layout, MainContent, Navigation },
+    mounted: function() {
+      this.$store.dispatch('retrieveProfile');
+      this.$store.dispatch('retrieveLanguages');
+    },
+    computed: {
+      profile: function() {
+        return this.$store.state.profile;
+      },
+      languages: function() {
+        return this.$store.state.languages;
+      }
+    }
   }
 </script>
 

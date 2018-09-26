@@ -1,12 +1,21 @@
 <template>
   <footer id="footer">
-    <a>English</a> | <a>Francais</a>
+    <a v-for="(language, index) in languages">
+      {{ language.name }}
+      <span v-if="isLast(index)"> | </span>
+    </a>
   </footer>
 </template>
 
 <script>
   export default {
-    name: "Footer"
+    name: "Footer",
+    props: ['languages'],
+    methods: {
+      isLast: function(index) {
+        return index !== this.languages.length - 1;
+      }
+    }
   }
 </script>
 

@@ -3,15 +3,15 @@
     <article>
       <p>
         <strong>Name: </strong>
-        <Emphasis>Katie Egervari</Emphasis>
+        <Emphasis>{{ fullName }}</Emphasis>
       </p>
       <p>
         <strong>Language: </strong>
-        <Emphasis>English</Emphasis>
+        <Emphasis> {{ profile.languageId }}</Emphasis>
       </p>
       <p>
         <strong>Average Number of Hours to Game Per Day: </strong>
-        <Emphasis>2</Emphasis>
+        <Emphasis>{{ profile.averageNumberOfHoursPerDay }}</Emphasis>
       </p>
     </article>
   </Pane>
@@ -22,7 +22,13 @@
   import Emphasis from "@/app/modules/ui/components/Emphasis";
   export default {
     name: 'ProfileDetails',
-    components: {Emphasis, Pane}
+    components: {Emphasis, Pane},
+    props: ['profile'],
+    computed: {
+      fullName: function() {
+        return this.profile.firstName + ' ' + this.profile.lastName;
+      }
+    }
   }
 </script>
 
