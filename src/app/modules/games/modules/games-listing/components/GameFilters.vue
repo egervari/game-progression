@@ -4,7 +4,7 @@
       <Label>
         Platform
       </Label>
-      <Select v-bind:value="filters.platform"
+      <select v-bind:value="filters.platform"
               v-on:change="onPlatformFilterChanged">
         <option value="0">All</option>
         <option v-for="platform in platforms"
@@ -12,37 +12,37 @@
                 :value="platform.id">
           {{ platform.name }}
         </option>
-      </Select>
+      </select>
     </FormField>
 
     <FormField>
       <Label>
         Completion
       </Label>
-      <Select v-bind:value="filters.completion"
+      <select v-bind:value="filters.completion"
               v-on:change="onCompletionFilterChanged">
         <option value="all">All</option>
         <option value="complete">Complete</option>
         <option value="not-complete">Not Complete</option>
-      </Select>
+      </select>
     </FormField>
 
     <FormField>
       <Label>
         Sort
       </Label>
-      <Select v-bind:value="filters.sortBy"
+      <select v-bind:value="filters.sortBy"
               v-on:change="onSortByChanged">
         <option value="priority">Priority</option>
         <option value="dateCreated">Date Created</option>
-      </Select>
+      </select>
     </FormField>
 
     <FormField>
       <Label>
         Search
       </Label>
-      <Input placeholder="Enter a game name..."
+      <input placeholder="Enter a game name..."
              v-bind:value="filters.searchText"
              v-on:change="onSearchTextChanged" />
     </FormField>
@@ -66,30 +66,28 @@
   import Label from '../../../../ui/components/Label';
   import Pane from '../../../../ui/components/Pane';
   import Button from "@/app/modules/ui/components/Button";
-  import Input from "@/app/modules/ui/components/Input";
-  import Select from "@/app/modules/ui/components/Select";
   import Actions from "@/app/modules/ui/components/Actions";
   import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
 
   export default {
     name: 'GameFilters',
-    components: {Actions, Select, Input, Button, FormField, Label, Pane },
+    components: {Actions, Button, FormField, Label, Pane },
     props: ['filters', 'platforms', 'numberOfSelections'],
     methods: {
-      onPlatformFilterChanged: function(platform) {
-        this.$store.dispatch(GamesListingStoreKeys.Actions.SetPlatformFilter, Number(platform));
+      onPlatformFilterChanged: function(event) {
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetPlatformFilter, Number(event.target.value));
       },
 
-      onCompletionFilterChanged: function(completion) {
-        this.$store.dispatch(GamesListingStoreKeys.Actions.SetCompletionFilter, completion);
+      onCompletionFilterChanged: function(event) {
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetCompletionFilter, event.target.value);
       },
 
-      onSortByChanged: function(sortBy) {
-        this.$store.dispatch(GamesListingStoreKeys.Actions.SetSortBy, sortBy);
+      onSortByChanged: function(event) {
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetSortBy, event.target.value);
       },
 
-      onSearchTextChanged: function(searchText) {
-        this.$store.dispatch(GamesListingStoreKeys.Actions.SetSearchText, searchText);
+      onSearchTextChanged: function(event) {
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetSearchText, event.target.value);
       },
 
       goToAddGame: function() {

@@ -36,14 +36,6 @@
 
 <style lang="scss">
   @import 'styles/colors';
-
-  html,
-  body {
-    margin: 0;
-    height: 100%;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
+  @import 'styles/defaults';
+  @import 'styles/forms';
 </style>

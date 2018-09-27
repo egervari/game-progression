@@ -18,30 +18,26 @@
       <FormGroup>
         <FormField>
           <Label>First Name</Label>
-          <Input v-bind:value="profile.firstName"
-                 @change="profile.firstName = $event" />
+          <input v-model="profile.firstName" />
         </FormField>
         <FormField>
           <Label>Last Name</Label>
-          <Input v-bind:value="profile.lastName"
-                 @change="profile.lastName = $event" />
+          <input v-model="profile.lastName" />
         </FormField>
         <FormField>
           <Label>Language</Label>
-          <Select v-bind:value="profile.languageId"
-                  @change="profile.languageId = $event">
-            <option value="0">Choose a language...</option>
+          <select v-model="profile.languageId">
+            <option value="0" disabled>Choose a language...</option>
             <option v-for="language in languages"
                     v-bind:key="language.id"
                     v-bind:value="language.id">
               {{ language.name }}
             </option>
-          </Select>
+          </select>
         </FormField>
         <FormField>
           <Label>Average Number of Hours to Game Per Day</Label>
-          <Input v-bind:value="profile.averageNumberOfHoursPerDay"
-                 @change="profile.averageNumberOfHoursPerDay = $event" />
+          <input v-model="profile.averageNumberOfHoursPerDay" />
         </FormField>
       </FormGroup>
     </Pane>
@@ -55,13 +51,11 @@
   import Actions from "@/app/modules/ui/components/Actions";
   import FormField from "@/app/modules/ui/components/FormField";
   import Label from "@/app/modules/ui/components/Label";
-  import Input from "@/app/modules/ui/components/Input";
-  import Select from "@/app/modules/ui/components/Select";
   import FormGroup from "@/app/modules/ui/components/FormGroup";
   import {EditProfileStoreKeys} from "@/app/modules/profile/modules/edit-profile/edit-profile-store-keys";
   export default {
     name: 'EditProfile',
-    components: {FormGroup, Select, Input, Label, FormField, Actions, Button, SectionHeader, Pane},
+    components: {FormGroup, Label, FormField, Actions, Button, SectionHeader, Pane},
     data: function() {
       return {
         profile: {
