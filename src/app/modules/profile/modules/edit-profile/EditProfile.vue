@@ -3,7 +3,8 @@
     <Pane>
       <SectionHeader>Edit Your Profile</SectionHeader>
       <Actions>
-        <Button type="save">
+        <Button type="save"
+                @click="saveGame()">
           Save
         </Button>
         <Button type="normal"
@@ -17,15 +18,18 @@
       <FormGroup>
         <FormField>
           <Label>First Name</Label>
-          <Input v-bind:value="profile.firstName"/>
+          <Input v-bind:value="profile.firstName"
+                 @change="profile.firstName = $event" />
         </FormField>
         <FormField>
           <Label>Last Name</Label>
-          <Input v-bind:value="profile.lastName"/>
+          <Input v-bind:value="profile.lastName"
+                 @change="profile.lastName = $event" />
         </FormField>
         <FormField>
           <Label>Language</Label>
-          <Select v-bind:value="profile.language">
+          <Select v-bind:value="profile.language"
+                  @change="profile.language = $event">
             <option v-for="language in languages"
                     v-bind:key="language.id"
                     v-bind:value="languages.id">
@@ -35,7 +39,8 @@
         </FormField>
         <FormField>
           <Label>Average Number of Hours to Game Per Day</Label>
-          <Input v-bind:value="profile.averageNumberOfHoursPerDay" />
+          <Input v-bind:value="profile.averageNumberOfHoursPerDay"
+                 @change="profile.averageNumberOfHoursPerDay = $event" />
         </FormField>
       </FormGroup>
     </Pane>
@@ -52,18 +57,31 @@
   import Input from "@/app/modules/ui/components/Input";
   import Select from "@/app/modules/ui/components/Select";
   import FormGroup from "@/app/modules/ui/components/FormGroup";
+  import {EditProfileStoreKeys} from "@/app/modules/profile/modules/edit-profile/edit-profile-store-keys";
   export default {
     name: 'EditProfile',
     components: {FormGroup, Select, Input, Label, FormField, Actions, Button, SectionHeader, Pane},
+    data: function() {
+      return {
+        profile: {
+          ...this.$store.state.profile
+        }
+      };
+    },
     computed: {
-      profile: function() {
-        return this.$store.state.profile;
-      },
       languages:function() {
         return this.$store.state.languages;
       }
     },
     methods: {
+      saveGame: function() {
+        this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
+          ...this.profile,
+          averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
+          language: Number(this.profile.language)
+        });
+      },
+
       goToProfile: function() {
         this.$router.replace('/profile/details');
       }
