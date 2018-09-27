@@ -6,7 +6,8 @@ export const GamesListingStoreKeys = {
     SetCompletionFilter: 'setCompletionFilter',
     SetSortBy: 'setSortBy',
     SetSearchText: 'setSearchText',
-    ToggleGameSelection: 'toggleGameSelection'
+    ToggleGameSelection: 'toggleGameSelection',
+    ClearGameSelections: 'clearGameSelections'
   },
   Actions: {
     RetrieveGames: 'retrieveGames',

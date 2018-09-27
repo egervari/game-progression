@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
 
 export default {
@@ -47,12 +49,15 @@ export default {
         ...state.gameSelections,
         [gameId]: !state.gameSelections[gameId]
       };
+    },
+    [GamesListingStoreKeys.Mutations.ClearGameSelections]: function(state) {
+      state.gameSelections = {};
     }
   },
   actions: {
     [GamesListingStoreKeys.Actions.RetrieveGames]: function({ commit, state }) {
-      fetch(
-        'http://localhost:3000/games?' +
+      Vue.http.get(
+        'games?' +
         `_sort=${state.filters.sortBy}&` +
         (state.filters.platform ? `platformId=${state.filters.platform}&` : '') +
         (state.filters.completion === 'complete' ? 'isComplete=true&' : '') +
@@ -78,6 +83,16 @@ export default {
     [GamesListingStoreKeys.Actions.SetSearchText]: function({ commit, dispatch }, searchText) {
       commit(GamesListingStoreKeys.Mutations.SetSearchText, searchText);
       dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
+    },
+    [GamesListingStoreKeys.Actions.DeleteSelectedGames]: function({ commit, dispatch, state }) {
+      Promise.all(
+        Object.keys(state.gameSelections)
+          .filter(key => state.gameSelections[key])
+          .map(key => Vue.http.delete(`games/${key}`))
+      ).then(() => {
+        commit(GamesListingStoreKeys.Mutations.ClearGameSelections);
+        dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
+      });
     }
   }
 };

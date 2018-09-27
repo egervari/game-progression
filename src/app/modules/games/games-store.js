@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import addGameStore from './modules/add-game/add-game-store';
 import editGameStore from './modules/edit-game/edit-game-store';
 import gamesListingStore from './modules/games-listing/games-listing-store';
@@ -22,7 +24,7 @@ export default {
   },
   actions: {
     [GamesStoreKeys.Actions.RetrievePlatforms]: function({ commit }) {
-      fetch('http://localhost:3000/platforms')
+      Vue.http.get('platforms')
         .then(response => response.json())
         .then(platforms => commit(GamesStoreKeys.Mutations.RetrievePlatformsSuccess, platforms))
         .catch(error => commit(GamesStoreKeys.Mutations.RetrievePlatformsFailure, error))

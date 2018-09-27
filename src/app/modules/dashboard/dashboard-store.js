@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import {DashboardStoreKeys} from "@/app/modules/dashboard/dashboard-store-keys";
 
 export default {
@@ -14,7 +16,7 @@ export default {
   },
   actions: {
     [DashboardStoreKeys.Actions.RetrieveDashboardGames]: function({ commit }) {
-      fetch('http://localhost:3000/games')
+      Vue.http.get('games')
         .then(response => response.json())
         .then(games => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess, games))
         .catch(error => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure, error))

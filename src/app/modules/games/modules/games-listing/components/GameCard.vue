@@ -13,7 +13,7 @@
 <script>
   import GameCardCompletionIndicator from "@/app/modules/games/modules/games-listing/components/GameCardCompletionIndicator";
   import GameCardDetails from "@/app/modules/games/modules/games-listing/components/GameCardDetails";
-  import {GamesStoreKeys} from "@/app/modules/games/modules/games-store-keys";
+  import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
   export default {
     name: 'GameCard',
     components: {GameCardDetails, GameCardCompletionIndicator},
@@ -25,7 +25,7 @@
     },
     methods: {
       selectGame: function() {
-        this.$store.commit(GamesStoreKeys.Mutations.ToggleGameSelection, this.game.id);
+        this.$store.commit(GamesListingStoreKeys.Mutations.ToggleGameSelection, this.game.id);
       },
 
       goToEditGame: function() {

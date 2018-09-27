@@ -34,13 +34,13 @@ export default new Vuex.Store({
   },
   actions: {
     [AppStoreKeys.Actions.RetrieveLanguages]: function({ commit }) {
-      fetch('http://localhost:3000/languages')
+      Vue.http.get('languages')
         .then(response => response.json())
         .then(languages => commit(AppStoreKeys.Mutations.RetrieveLanguagesSuccess, languages))
         .catch(error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error))
     },
     [AppStoreKeys.Actions.RetrieveProfile]: function({ commit }) {
-      fetch('http://localhost:3000/profile')
+      Vue.http.get('profile')
         .then(response => response.json())
         .then(profile => commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile))
         .catch(error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error))
