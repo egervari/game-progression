@@ -16,12 +16,14 @@
 
   nav#navigation {
     background: $blue;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
 
     a {
       color: $text-on-dark;
+      display: inline-block;
       padding: 1rem;
       text-decoration: none;
+      transition: all 200ms ease;
 
       &:hover {
         background-color: lighten($blue, 5%);

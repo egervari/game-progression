@@ -1,5 +1,6 @@
 <template>
   <select class="select"
+          v-bind:value="value"
           v-on:change="onChange">
     <slot></slot>
   </select>
@@ -9,6 +10,7 @@
   export default {
     name: 'Select',
     event: 'change',
+    props: ['value'],
     methods: {
       onChange: function(event) {
         this.$emit('change', event.target.value);

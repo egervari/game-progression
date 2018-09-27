@@ -9,7 +9,7 @@ export default {
   state: {
     games: [],
     filters: {
-      platform: null,
+      platform: 0,
       completion: 'all',
       sortBy: 'priority',
       searchText: ''

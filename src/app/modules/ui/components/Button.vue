@@ -24,6 +24,7 @@
     cursor: pointer;
     padding: 0.5rem 1rem;
     text-transform: uppercase;
+    transition: all 200ms ease;
 
     &:focus {
       outline: none;

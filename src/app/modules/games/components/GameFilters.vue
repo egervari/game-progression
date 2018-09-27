@@ -4,10 +4,11 @@
       <Label>
         Platform
       </Label>
-      <Select v-model="filters.platform"
+      <Select v-bind:value="filters.platform"
               v-on:change="onPlatformFilterChanged">
-        <option :value="null">All</option>
+        <option value="0">All</option>
         <option v-for="platform in platforms"
+                v-bind:key="platform.id"
                 :value="platform.id">
           {{ platform.name }}
         </option>
@@ -18,7 +19,7 @@
       <Label>
         Completion
       </Label>
-      <Select v-model="filters.completion"
+      <Select v-bind:value="filters.completion"
               v-on:change="onCompletionFilterChanged">
         <option value="all">All</option>
         <option value="complete">Complete</option>
@@ -30,7 +31,7 @@
       <Label>
         Sort
       </Label>
-      <Select v-model="filters.sortBy"
+      <Select v-bind:value="filters.sortBy"
               v-on:change="onSortByChanged">
         <option value="priority">Priority</option>
         <option value="dateCreated">Date Created</option>
@@ -42,7 +43,7 @@
         Search
       </Label>
       <Input placeholder="Enter a game name..."
-             v-model="filters.searchText"
+             v-bind:value="filters.searchText"
              v-on:change="onSearchTextChanged" />
     </FormField>
 

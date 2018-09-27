@@ -34,6 +34,7 @@
     display: flex;
     font-size: 1.25rem;
     padding: 1rem;
+    transition: all 200ms ease;
 
     &:hover {
       background: lighten($dark-blue, 5%);

@@ -29,6 +29,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
+    transition: all 150ms ease;
 
     &:hover {
       background: lighten($blue, 5%);

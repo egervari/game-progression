@@ -1,13 +1,14 @@
 <template>
   <input class="input"
-         :placeholder="placeholder"
+         v-bind:value="value"
+         v-bind:placeholder="placeholder"
          v-on:change="onChange" />
 </template>
 
 <script>
   export default {
     name: 'Input',
-    props: ['placeholder'],
+    props: ['value', 'placeholder'],
     event: 'change',
     methods: {
       onChange: function(event) {
