@@ -65,7 +65,7 @@
     },
     methods: {
       goToProfile: function() {
-        this.$router.replace('/profile');
+        this.$router.replace('/profile/details');
       }
     }
   }

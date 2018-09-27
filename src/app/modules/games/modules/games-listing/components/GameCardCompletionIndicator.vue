@@ -24,7 +24,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../styles/colors';
+  @import '../../../../../styles/colors';
 
   .game-card-completion-indicator {
     flex-shrink: 0;

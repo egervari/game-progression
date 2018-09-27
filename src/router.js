@@ -19,7 +19,24 @@ export default new Router({
     {
       path: '/games',
       name: 'games',
-      component: () => import(/* webpackChunkName: "games" */ './app/modules/games/Games')
+      component: () => import(/* webpackChunkName: "games" */ './app/modules/games/Games'),
+      children: [
+        {
+          path: 'listing',
+          name: 'games-listing',
+          component: () => import('./app/modules/games/modules/games-listing/GamesListing')
+        },
+        {
+          path: 'add-game',
+          name: 'add-game',
+          component: () => import('./app/modules/games/modules/add-game/AddGame')
+        },
+        {
+          path: ':id',
+          name: 'edit-game',
+          component: () => import('./app/modules/games/modules/edit-game/EditGame')
+        },
+      ]
     },
     {
       path: '/profile',
@@ -27,7 +44,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "profile" */ './app/modules/profile/Profile'),
       children: [
         {
-          path: '',
+          path: 'details',
           name: 'profile-details',
           component: () => import(/* webpackChunkName: "profile-details" */ './app/modules/profile/modules/profile-details/ProfileDetails'),
         },

@@ -47,22 +47,28 @@
              v-on:change="onSearchTextChanged" />
     </FormField>
 
-    <Button type="normal">Add Game</Button>
-    <Button type="warn">Delete Games</Button>
+    <Actions>
+      <Button type="normal"
+              @click="goToAddGame()">
+        Add Game
+      </Button>
+      <Button type="warn">Delete Games</Button>
+    </Actions>
   </Pane>
 </template>
 
 <script>
-  import FormField from '../../ui/components/FormField';
-  import Label from '../../ui/components/Label';
-  import Pane from '../../ui/components/Pane';
+  import FormField from '../../../../ui/components/FormField';
+  import Label from '../../../../ui/components/Label';
+  import Pane from '../../../../ui/components/Pane';
   import Button from "@/app/modules/ui/components/Button";
   import Input from "@/app/modules/ui/components/Input";
   import Select from "@/app/modules/ui/components/Select";
+  import Actions from "@/app/modules/ui/components/Actions";
 
   export default {
     name: 'GameFilters',
-    components: {Select, Input, Button, FormField, Label, Pane },
+    components: {Actions, Select, Input, Button, FormField, Label, Pane },
     props: ['filters', 'platforms'],
     methods: {
       onPlatformFilterChanged: function(platform) {
@@ -79,6 +85,10 @@
 
       onSearchTextChanged: function(searchText) {
         this.$store.dispatch('setSearchText', searchText);
+      },
+
+      goToAddGame: function() {
+        this.$router.push('/games/add-game');
       }
     }
   }

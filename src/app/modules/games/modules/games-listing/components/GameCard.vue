@@ -1,5 +1,6 @@
 <template>
-  <article class="game-card">
+  <article class="game-card"
+           @dblclick="goToEditGame()">
     <GameCardCompletionIndicator v-bind:game="game"></GameCardCompletionIndicator>
     <GameCardDetails v-bind:game="game"
                      v-bind:platforms="platforms">
@@ -9,17 +10,22 @@
 </template>
 
 <script>
-  import GameCardCompletionIndicator from "@/app/modules/games/components/GameCardCompletionIndicator";
-  import GameCardDetails from "@/app/modules/games/components/GameCardDetails";
+  import GameCardCompletionIndicator from "@/app/modules/games/modules/games-listing/components/GameCardCompletionIndicator";
+  import GameCardDetails from "@/app/modules/games/modules/games-listing/components/GameCardDetails";
   export default {
     name: 'GameCard',
     components: {GameCardDetails, GameCardCompletionIndicator},
-    props: ['game', 'platforms']
+    props: ['game', 'platforms'],
+    methods: {
+      goToEditGame: function() {
+        this.$router.push('/games/edit-game')
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../styles/colors';
+  @import '../../../../../styles/colors';
 
   article.game-card {
     align-items: end;
