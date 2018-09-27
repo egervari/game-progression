@@ -9,7 +9,8 @@
     </Pane>
 
     <ProfileDetailsPane v-if="profile"
-                        v-bind:profile="profile">
+                        v-bind:profile="profile"
+                        v-bind:languages="languages">
     </ProfileDetailsPane>
   </section>
 </template>
@@ -25,6 +26,9 @@
     computed: {
       profile: function() {
         return this.$store.state.profile;
+      },
+      languages: function() {
+        return this.$store.state.languages;
       }
     },
     methods: {

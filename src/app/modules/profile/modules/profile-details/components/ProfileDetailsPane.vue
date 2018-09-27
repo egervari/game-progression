@@ -7,7 +7,7 @@
       </p>
       <p>
         <strong>Language: </strong>
-        <Emphasis> {{ profile.languageId }}</Emphasis>
+        <Emphasis> {{ language.name }}</Emphasis>
       </p>
       <p>
         <strong>Average Number of Hours to Game Per Day: </strong>
@@ -23,10 +23,13 @@
   export default {
     name: 'ProfileDetailsPane',
     components: {Emphasis, Pane},
-    props: ['profile'],
+    props: ['profile', 'languages'],
     computed: {
       fullName: function() {
         return this.profile.firstName + ' ' + this.profile.lastName;
+      },
+      language: function() {
+        return this.languages.find(language => language.id === this.profile.languageId)
       }
     }
   }

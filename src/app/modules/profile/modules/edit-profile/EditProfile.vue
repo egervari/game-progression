@@ -28,11 +28,12 @@
         </FormField>
         <FormField>
           <Label>Language</Label>
-          <Select v-bind:value="profile.language"
-                  @change="profile.language = $event">
+          <Select v-bind:value="profile.languageId"
+                  @change="profile.languageId = $event">
+            <option value="0">Choose a language...</option>
             <option v-for="language in languages"
                     v-bind:key="language.id"
-                    v-bind:value="languages.id">
+                    v-bind:value="language.id">
               {{ language.name }}
             </option>
           </Select>
@@ -75,10 +76,12 @@
     },
     methods: {
       saveGame: function() {
+        console.log(Number(this.profile.languageId));
+
         this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
           ...this.profile,
           averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
-          language: Number(this.profile.language)
+          languageId: Number(this.profile.languageId)
         });
       },
 
