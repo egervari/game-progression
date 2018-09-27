@@ -1,6 +1,7 @@
 import addGameStore from './modules/add-game/add-game-store';
 import editGameStore from './modules/edit-game/edit-game-store';
 import gamesListingStore from './modules/games-listing/games-listing-store';
+import {GamesStoreKeys} from "@/app/modules/games/modules/games-store-keys";
 
 export default {
   modules: {
@@ -12,19 +13,19 @@ export default {
     platforms: []
   },
   mutations: {
-    retrievePlatformsSuccess: function(state, platforms) {
+    [GamesStoreKeys.Mutations.RetrievePlatformsSuccess]: function(state, platforms) {
       state.platforms = platforms;
     },
-    retrievePlatformsFailure: function() {
+    [GamesStoreKeys.Mutations.RetrievePlatformsFailure]: function() {
 
     }
   },
   actions: {
-    retrievePlatforms: function({ commit }) {
+    [GamesStoreKeys.Actions.RetrievePlatforms]: function({ commit }) {
       fetch('http://localhost:3000/platforms')
         .then(response => response.json())
-        .then(platforms => commit('retrievePlatformsSuccess', platforms))
-        .catch(error => commit('retrievePlatformsFailure', error))
+        .then(platforms => commit(GamesStoreKeys.Mutations.RetrievePlatformsSuccess, platforms))
+        .catch(error => commit(GamesStoreKeys.Mutations.RetrievePlatformsFailure, error))
     }
   }
 };

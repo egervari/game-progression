@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import dashboardStore from "@/app/modules/dashboard/dashboard-store";
 import gamesStore from "@/app/modules/games/games-store";
 import profileStore from "@/app/modules/profile/profile-store";
+import {AppStoreKeys} from "@/app/app-store-keys";
 
 Vue.use(Vuex);
 
@@ -18,31 +19,31 @@ export default new Vuex.Store({
     profile: null
   },
   mutations: {
-    retrieveLanguagesSuccess: function(state, languages) {
+    [AppStoreKeys.Mutations.RetrieveLanguagesSuccess]: function(state, languages) {
       state.languages = languages;
     },
-    retrieveLanguagesFailure: function() {
+    [AppStoreKeys.Mutations.RetrieveLanguagesFailure]: function() {
 
     },
-    retrieveProfileSuccess: function(state, profile) {
+    [AppStoreKeys.Mutations.RetrieveProfileSuccess]: function(state, profile) {
       state.profile = profile;
     },
-    retrieveProfileFailure: function() {
+    [AppStoreKeys.Mutations.RetrieveProfileFailure]: function() {
 
     }
   },
   actions: {
-    retrieveLanguages: function({ commit }) {
+    [AppStoreKeys.Actions.RetrieveLanguages]: function({ commit }) {
       fetch('http://localhost:3000/languages')
         .then(response => response.json())
-        .then(languages => commit('retrieveLanguagesSuccess', languages))
-        .catch(error => commit('retrieveLanguagesFailure', error))
+        .then(languages => commit(AppStoreKeys.Mutations.RetrieveLanguagesSuccess, languages))
+        .catch(error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error))
     },
-    retrieveProfile: function({ commit }) {
+    [AppStoreKeys.Actions.RetrieveProfile]: function({ commit }) {
       fetch('http://localhost:3000/profile')
         .then(response => response.json())
-        .then(profile => commit('retrieveProfileSuccess', profile))
-        .catch(error => commit('retrieveProfileFailure', error))
+        .then(profile => commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile))
+        .catch(error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error))
     }
   }
 })

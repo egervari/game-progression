@@ -69,6 +69,7 @@
   import Input from "@/app/modules/ui/components/Input";
   import Select from "@/app/modules/ui/components/Select";
   import Actions from "@/app/modules/ui/components/Actions";
+  import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
 
   export default {
     name: 'GameFilters',
@@ -76,19 +77,19 @@
     props: ['filters', 'platforms', 'numberOfSelections'],
     methods: {
       onPlatformFilterChanged: function(platform) {
-        this.$store.dispatch('setPlatformFilter', Number(platform));
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetPlatformFilter, Number(platform));
       },
 
       onCompletionFilterChanged: function(completion) {
-        this.$store.dispatch('setCompletionFilter', completion);
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetCompletionFilter, completion);
       },
 
       onSortByChanged: function(sortBy) {
-        this.$store.dispatch('setSortBy', sortBy);
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetSortBy, sortBy);
       },
 
       onSearchTextChanged: function(searchText) {
-        this.$store.dispatch('setSearchText', searchText);
+        this.$store.dispatch(GamesListingStoreKeys.Actions.SetSearchText, searchText);
       },
 
       goToAddGame: function() {
@@ -100,7 +101,7 @@
       },
 
       deleteSelectedGames: function() {
-        this.$store.dispatch('deleteSelectedGames');
+        this.$store.dispatch(GamesListingStoreKeys.Actions.DeleteSelectedGames);
       }
     }
   }

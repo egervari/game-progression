@@ -15,12 +15,13 @@
   import Layout from './components/Layout';
   import MainContent from './components/MainContent';
   import Navigation from './components/Navigation';
+  import { AppStoreKeys } from "@/app/app-store-keys";
 
   export default {
     components: { Footer, Header, Layout, MainContent, Navigation },
     mounted: function() {
-      this.$store.dispatch('retrieveProfile');
-      this.$store.dispatch('retrieveLanguages');
+      this.$store.dispatch(AppStoreKeys.Actions.RetrieveProfile);
+      this.$store.dispatch(AppStoreKeys.Actions.RetrieveLanguages);
     },
     computed: {
       profile: function() {

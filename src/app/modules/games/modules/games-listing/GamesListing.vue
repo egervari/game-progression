@@ -14,11 +14,12 @@
 <script>
   import GameFilters from "@/app/modules/games/modules/games-listing/components/GameFilters";
   import GameCards from "@/app/modules/games/modules/games-listing/components/GameCards";
+  import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
   export default {
     name: 'GamesListing',
     components: {GameCards, GameFilters},
     mounted: function() {
-      this.$store.dispatch('retrieveGames');
+      this.$store.dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
     },
     computed: {
       platforms: function() {

@@ -1,21 +1,23 @@
+import {DashboardStoreKeys} from "@/app/modules/dashboard/dashboard-store-keys";
+
 export default {
   state: {
     games: []
   },
   mutations: {
-    retrieveDashboardGamesSuccess: function(state, games) {
+    [DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess]: function(state, games) {
       state.games = games;
     },
-    retrieveDashboardGamesFailure: function() {
+    [DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure]: function() {
 
     },
   },
   actions: {
-    retrieveDashboardGames: function({ commit }) {
+    [DashboardStoreKeys.Actions.RetrieveDashboardGames]: function({ commit }) {
       fetch('http://localhost:3000/games')
         .then(response => response.json())
-        .then(games => commit('retrieveDashboardGamesSuccess', games))
-        .catch(error => commit('retrieveDashboardGamesFailure', error))
+        .then(games => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess, games))
+        .catch(error => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure, error))
     }
   }
 };

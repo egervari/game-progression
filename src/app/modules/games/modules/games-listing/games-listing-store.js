@@ -1,3 +1,5 @@
+import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
+
 export default {
   state: {
     games: [],
@@ -10,37 +12,37 @@ export default {
     gameSelections: {}
   },
   mutations: {
-    retrieveGamesSuccess: function(state, games) {
+    [GamesListingStoreKeys.Mutations.RetrieveGamesSuccess]: function(state, games) {
       state.games = games;
     },
-    retrieveGamesFailure: function() {
+    [GamesListingStoreKeys.Mutations.RetrieveGamesFailure]: function() {
 
     },
-    setPlatformFilter: function(state, platform) {
+    [GamesListingStoreKeys.Mutations.SetPlatformFilter]: function(state, platform) {
       state.filters = {
         ...state.filters,
         platform: platform
       };
     },
-    setCompletionFilter: function(state, completion) {
+    [GamesListingStoreKeys.Mutations.SetCompletionFilter]: function(state, completion) {
       state.filters = {
         ...state.filters,
         completion: completion
       };
     },
-    setSortBy: function(state, sortBy) {
+    [GamesListingStoreKeys.Mutations.SetSortBy]: function(state, sortBy) {
       state.filters = {
         ...state.filters,
         sortBy: sortBy
       };
     },
-    setSearchText: function(state, searchText) {
+    [GamesListingStoreKeys.Mutations.SetSearchText]: function(state, searchText) {
       state.filters = {
         ...state.filters,
         searchText: searchText
       };
     },
-    toggleGameSelection: function(state, gameId) {
+    [GamesListingStoreKeys.Mutations.ToggleGameSelection]: function(state, gameId) {
       state.gameSelections = {
         ...state.gameSelections,
         [gameId]: !state.gameSelections[gameId]
@@ -48,7 +50,7 @@ export default {
     }
   },
   actions: {
-    retrieveGames: function({ commit, state }) {
+    [GamesListingStoreKeys.Actions.RetrieveGames]: function({ commit, state }) {
       fetch(
         'http://localhost:3000/games?' +
         `_sort=${state.filters.sortBy}&` +
@@ -58,24 +60,24 @@ export default {
         (state.filters.searchText.length > 0 ? `name_like=${state.filters.searchText}&` : '')
       )
         .then(response => response.json())
-        .then(games => commit('retrieveGamesSuccess', games))
-        .catch(error => commit('retrieveGamesFailure', error))
+        .then(games => commit(GamesListingStoreKeys.Mutations.RetrieveGamesSuccess, games))
+        .catch(error => commit(GamesListingStoreKeys.Mutations.RetrieveGamesFailure, error))
     },
-    setPlatformFilter: function({ commit, dispatch }, platform) {
-      commit('setPlatformFilter', platform);
-      dispatch('retrieveGames');
+    [GamesListingStoreKeys.Actions.SetPlatformFilter]: function({ commit, dispatch }, platform) {
+      commit(GamesListingStoreKeys.Mutations.SetPlatformFilter, platform);
+      dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
     },
-    setCompletionFilter: function({ commit, dispatch }, completion) {
-      commit('setCompletionFilter', completion);
-      dispatch('retrieveGames');
+    [GamesListingStoreKeys.Actions.SetCompletionFilter]: function({ commit, dispatch }, completion) {
+      commit(GamesListingStoreKeys.Mutations.SetCompletionFilter, completion);
+      dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
     },
-    setSortBy: function({ commit, dispatch }, sortBy) {
-      commit('setSortBy', sortBy);
-      dispatch('retrieveGames');
+    [GamesListingStoreKeys.Actions.SetSortBy]: function({ commit, dispatch }, sortBy) {
+      commit(GamesListingStoreKeys.Mutations.SetSortBy, sortBy);
+      dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
     },
-    setSearchText: function({ commit, dispatch }, searchText) {
-      commit('setSearchText', searchText);
-      dispatch('retrieveGames');
+    [GamesListingStoreKeys.Actions.SetSearchText]: function({ commit, dispatch }, searchText) {
+      commit(GamesListingStoreKeys.Mutations.SetSearchText, searchText);
+      dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
     }
   }
 };
