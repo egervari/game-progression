@@ -1,5 +1,6 @@
 <template>
   <article class="game-card"
+           @click="selectGame()"
            @dblclick="goToEditGame()">
     <GameCardCompletionIndicator v-bind:game="game"></GameCardCompletionIndicator>
     <GameCardDetails v-bind:game="game"
@@ -17,6 +18,10 @@
     components: {GameCardDetails, GameCardCompletionIndicator},
     props: ['game', 'platforms'],
     methods: {
+      selectGame: function() {
+        this.$store.commit('selectGame');
+      },
+
       goToEditGame: function() {
         this.$router.push('/games/edit-game')
       }

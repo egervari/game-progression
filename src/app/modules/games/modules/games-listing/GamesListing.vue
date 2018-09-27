@@ -19,14 +19,14 @@
       this.$store.dispatch('retrieveGames');
     },
     computed: {
-      games: function() {
-        return this.$store.state.gamesState.games;
-      },
       platforms: function() {
         return this.$store.state.gamesState.platforms;
       },
+      games: function() {
+        return this.$store.state.gamesState.gamesListingState.games;
+      },
       filters: function() {
-        return this.$store.state.gamesState.filters;
+        return this.$store.state.gamesState.gamesListingState.filters;
       }
     }
   }
