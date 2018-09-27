@@ -52,7 +52,11 @@
               @click="goToAddGame()">
         Add Game
       </Button>
-      <Button type="warn">Delete Games</Button>
+      <Button type="warn"
+              v-bind:disabled="isDeleteDisabled()"
+              @click="deleteSelectedGames()">
+        Delete {{ numberOfSelections }} Games
+      </Button>
     </Actions>
   </Pane>
 </template>
@@ -69,7 +73,7 @@
   export default {
     name: 'GameFilters',
     components: {Actions, Select, Input, Button, FormField, Label, Pane },
-    props: ['filters', 'platforms'],
+    props: ['filters', 'platforms', 'numberOfSelections'],
     methods: {
       onPlatformFilterChanged: function(platform) {
         this.$store.dispatch('setPlatformFilter', Number(platform));
@@ -89,6 +93,14 @@
 
       goToAddGame: function() {
         this.$router.push('/games/add-game');
+      },
+
+      isDeleteDisabled: function() {
+        return this.numberOfSelections === 0;
+      },
+
+      deleteSelectedGames: function() {
+        this.$store.dispatch('deleteSelectedGames');
       }
     }
   }

@@ -1,5 +1,6 @@
 <template>
-  <button :class="classes"
+  <button v-bind:class="classes"
+          v-bind:disabled="disabled"
           @click="$emit('click')">
     <slot></slot>
   </button>
@@ -8,7 +9,7 @@
 <script>
   export default {
     name: 'Button',
-    props: ['type'],
+    props: ['type', 'disabled'],
     events: ['click'],
     computed: {
       classes: function () {
@@ -32,6 +33,10 @@
 
     &:focus {
       outline: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
     }
 
     &.normal {

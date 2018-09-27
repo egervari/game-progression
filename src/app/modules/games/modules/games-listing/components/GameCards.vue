@@ -3,6 +3,7 @@
     <GameCard v-for="game in games"
               v-bind:key="game.id"
               v-bind:game="game"
+              v-bind:selected="isGameSelected(game.id)"
               v-bind:platforms="platforms">
     </GameCard>
   </section>
@@ -13,7 +14,12 @@
   export default {
     name: 'GameCards',
     components: {GameCard},
-    props: ['games', 'platforms']
+    props: ['games', 'platforms', 'gameSelections'],
+    methods: {
+      isGameSelected: function(gameId) {
+        return this.gameSelections[gameId];
+      }
+    }
   }
 </script>
 

@@ -6,7 +6,8 @@ export default {
       completion: 'all',
       sortBy: 'priority',
       searchText: ''
-    }
+    },
+    gameSelections: {}
   },
   mutations: {
     retrieveGamesSuccess: function(state, games) {
@@ -37,6 +38,12 @@ export default {
       state.filters = {
         ...state.filters,
         searchText: searchText
+      };
+    },
+    toggleGameSelection: function(state, gameId) {
+      state.gameSelections = {
+        ...state.gameSelections,
+        [gameId]: !state.gameSelections[gameId]
       };
     }
   },

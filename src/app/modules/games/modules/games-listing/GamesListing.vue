@@ -1,10 +1,12 @@
 <template>
   <section id="games-listing">
     <GameFilters v-bind:filters="filters"
-                 v-bind:platforms="platforms">
+                 v-bind:platforms="platforms"
+                 v-bind:numberOfSelections="numberOfSelections">
     </GameFilters>
     <GameCards v-bind:games="games"
-               v-bind:platforms="platforms">
+               v-bind:platforms="platforms"
+               v-bind:game-selections="gameSelections">
     </GameCards>
   </section>
 </template>
@@ -27,6 +29,15 @@
       },
       filters: function() {
         return this.$store.state.gamesState.gamesListingState.filters;
+      },
+      gameSelections: function() {
+        return this.$store.state.gamesState.gamesListingState.gameSelections;
+      },
+      numberOfSelections: function() {
+        return Object.keys(this.gameSelections).reduce(
+          (total, key) => total + (this.gameSelections[key] ? 1 : 0),
+          0
+        );
       }
     }
   }

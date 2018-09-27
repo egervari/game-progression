@@ -1,5 +1,5 @@
 <template>
-  <article class="game-card"
+  <article :class="classes"
            @click="selectGame()"
            @dblclick="goToEditGame()">
     <GameCardCompletionIndicator v-bind:game="game"></GameCardCompletionIndicator>
@@ -16,10 +16,15 @@
   export default {
     name: 'GameCard',
     components: {GameCardDetails, GameCardCompletionIndicator},
-    props: ['game', 'platforms'],
+    props: ['game', 'platforms', 'selected'],
+    computed: {
+      classes: function() {
+        return 'game-card ' + (this.selected ? 'selected' : '')
+      }
+    },
     methods: {
       selectGame: function() {
-        this.$store.commit('selectGame');
+        this.$store.commit('toggleGameSelection', this.game.id);
       },
 
       goToEditGame: function() {
@@ -54,6 +59,10 @@
     &:nth-child(even) {
       margin-right: 0;
       width: calc(50%);
+    }
+
+    &.selected {
+      background: lighten($blue, 10%);
     }
 
     img {
