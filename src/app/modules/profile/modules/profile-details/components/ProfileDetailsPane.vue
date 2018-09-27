@@ -1,5 +1,5 @@
 <template>
-  <Pane id="profile-details">
+  <Pane id="profile-details-pane">
     <article>
       <p>
         <strong>Name: </strong>
@@ -21,7 +21,7 @@
   import Pane from "@/app/modules/ui/components/Pane";
   import Emphasis from "@/app/modules/ui/components/Emphasis";
   export default {
-    name: 'ProfileDetails',
+    name: 'ProfileDetailsPane',
     components: {Emphasis, Pane},
     props: ['profile'],
     computed: {

@@ -24,7 +24,19 @@ export default new Router({
     {
       path: '/profile',
       name: 'profile',
-      component: () => import(/* webpackChunkName: "games" */ './app/modules/profile/Profile')
+      component: () => import(/* webpackChunkName: "profile" */ './app/modules/profile/Profile'),
+      children: [
+        {
+          path: '',
+          name: 'profile-details',
+          component: () => import(/* webpackChunkName: "profile-details" */ './app/modules/profile/modules/profile-details/ProfileDetails'),
+        },
+        {
+          path: 'edit',
+          name: 'edit-profile',
+          component: () => import(/* webpackChunkName: "edit-profile" */ './app/modules/profile/modules/edit-profile/EditProfile'),
+        }
+      ]
     }
   ]
 })

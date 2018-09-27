@@ -1,5 +1,6 @@
 <template>
-  <button :class="classes">
+  <button :class="classes"
+          @click="$emit('click')">
     <slot></slot>
   </button>
 </template>
@@ -8,6 +9,7 @@
   export default {
     name: 'Button',
     props: ['type'],
+    events: ['click'],
     computed: {
       classes: function () {
         return 'button ' + (this ? this.type : '');
@@ -21,7 +23,9 @@
 
   button.button {
     border: none;
+    border-radius: 0.25rem;
     cursor: pointer;
+    min-width: 6.5rem;
     padding: 0.5rem 1rem;
     text-transform: uppercase;
     transition: all 200ms ease;
@@ -41,7 +45,7 @@
 
     &.save {
       background: $green;
-      color: $text-on-dark;
+      color: $blue;
 
       &:hover {
         background: lighten($green, 5%);

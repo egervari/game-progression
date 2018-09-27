@@ -19,7 +19,7 @@
     },
     methods: {
       goToProfile: function() {
-        this.$router.push('/profile');
+        this.$router.replace('/profile');
       }
     }
   }
