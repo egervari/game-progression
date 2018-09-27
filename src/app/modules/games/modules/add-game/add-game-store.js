@@ -8,7 +8,7 @@ export default {
 
   },
   mutations: {
-    [AddGameStoreKeys.Mutations.SaveGameFailure]: function(state, error) {
+    [AddGameStoreKeys.Mutations.SaveGameFailure]: function() {
     }
   },
   actions: {

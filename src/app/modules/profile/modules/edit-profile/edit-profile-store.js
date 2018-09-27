@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Router from '../../../../../router';
 
 import {EditProfileStoreKeys} from "@/app/modules/profile/modules/edit-profile/edit-profile-store-keys";

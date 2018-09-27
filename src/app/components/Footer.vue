@@ -1,6 +1,7 @@
 <template>
   <footer id="footer">
-    <a v-for="(language, index) in languages">
+    <a v-for="(language, index) in languages"
+       v-bind:key="language.id">
       {{ language.name }}
       <span v-if="isLast(index)"> | </span>
     </a>
