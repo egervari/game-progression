@@ -1,6 +1,5 @@
-import Vue from 'vue';
-
 import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
+import {gamesListingService} from "@/app/modules/games/modules/games-listing/games-listing-service";
 
 export default {
   state: {
@@ -56,17 +55,11 @@ export default {
   },
   actions: {
     [GamesListingStoreKeys.Actions.RetrieveGames]: function({ commit, state }) {
-      Vue.http.get(
-        'games?' +
-        `_sort=${state.filters.sortBy}&` +
-        (state.filters.platform ? `platformId=${state.filters.platform}&` : '') +
-        (state.filters.completion === 'complete' ? 'isComplete=true&' : '') +
-        (state.filters.completion === 'not-complete' ? 'isComplete=false&' : '') +
-        (state.filters.searchText.length > 0 ? `name_like=${state.filters.searchText}&` : '')
-      )
-        .then(response => response.json())
-        .then(games => commit(GamesListingStoreKeys.Mutations.RetrieveGamesSuccess, games))
-        .catch(error => commit(GamesListingStoreKeys.Mutations.RetrieveGamesFailure, error))
+      gamesListingService.getGames(
+        state.filters,
+        games => commit(GamesListingStoreKeys.Mutations.RetrieveGamesSuccess, games),
+        error => commit(GamesListingStoreKeys.Mutations.RetrieveGamesFailure, error)
+      );
     },
     [GamesListingStoreKeys.Actions.SetPlatformFilter]: function({ commit, dispatch }, platform) {
       commit(GamesListingStoreKeys.Mutations.SetPlatformFilter, platform);
@@ -85,14 +78,13 @@ export default {
       dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
     },
     [GamesListingStoreKeys.Actions.DeleteSelectedGames]: function({ commit, dispatch, state }) {
-      Promise.all(
-        Object.keys(state.gameSelections)
-          .filter(key => state.gameSelections[key])
-          .map(key => Vue.http.delete(`games/${key}`))
-      ).then(() => {
-        commit(GamesListingStoreKeys.Mutations.ClearGameSelections);
-        dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
-      });
+      gamesListingService.deleteGames(
+        state.gameSelections,
+        () => {
+          commit(GamesListingStoreKeys.Mutations.ClearGameSelections);
+          dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
+        }
+      );
     }
   }
 };

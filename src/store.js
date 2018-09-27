@@ -5,6 +5,7 @@ import dashboardStore from "@/app/modules/dashboard/dashboard-store";
 import gamesStore from "@/app/modules/games/games-store";
 import profileStore from "@/app/modules/profile/profile-store";
 import {AppStoreKeys} from "@/app/app-store-keys";
+import {appService} from "@/app/app-service";
 
 Vue.use(Vuex);
 
@@ -34,16 +35,16 @@ export default new Vuex.Store({
   },
   actions: {
     [AppStoreKeys.Actions.RetrieveLanguages]: function({ commit }) {
-      Vue.http.get('languages')
-        .then(response => response.json())
-        .then(languages => commit(AppStoreKeys.Mutations.RetrieveLanguagesSuccess, languages))
-        .catch(error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error))
+      appService.getLanguages(
+        languages => commit(AppStoreKeys.Mutations.RetrieveLanguagesSuccess, languages),
+        error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error)
+      );
     },
     [AppStoreKeys.Actions.RetrieveProfile]: function({ commit }) {
-      Vue.http.get('profile')
-        .then(response => response.json())
-        .then(profile => commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile))
-        .catch(error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error))
+      appService.getProfile(
+        profile => commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile),
+        error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error)
+      );
     }
   }
 })

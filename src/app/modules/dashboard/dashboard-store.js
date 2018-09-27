@@ -1,6 +1,5 @@
-import Vue from 'vue';
-
 import {DashboardStoreKeys} from "@/app/modules/dashboard/dashboard-store-keys";
+import {dashboardService} from "@/app/modules/dashboard/dashboard-service";
 
 export default {
   state: {
@@ -16,10 +15,10 @@ export default {
   },
   actions: {
     [DashboardStoreKeys.Actions.RetrieveDashboardGames]: function({ commit }) {
-      Vue.http.get('games')
-        .then(response => response.json())
-        .then(games => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess, games))
-        .catch(error => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure, error))
+      dashboardService.getGames(
+        games => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess, games),
+        error => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure, error)
+      );
     }
   }
 };

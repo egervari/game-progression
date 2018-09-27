@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from '../../../../../router';
 
 import {EditProfileStoreKeys} from "@/app/modules/profile/modules/edit-profile/edit-profile-store-keys";
+import {editProfileService} from "@/app/modules/profile/modules/edit-profile/edit-profile-service";
 
 export default {
   state: {
@@ -12,12 +13,14 @@ export default {
   },
   actions: {
     [EditProfileStoreKeys.Actions.SaveProfile]: function({ commit, rootState }, profile) {
-      Vue.http.put('profile', profile)
-        .then(response => {
-          rootState.profile = response.body;
+      editProfileService.saveProfile(
+        profile,
+        profile => {
+          rootState.profile = profile;
           Router.replace('/profile/details');
-        })
-        .catch(error => commit(EditProfileStoreKeys.Actions.SaveProfileFailure, error))
+        },
+        error => commit(EditProfileStoreKeys.Actions.SaveProfileFailure, error)
+      );
     }
   }
 };

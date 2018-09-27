@@ -140,6 +140,36 @@
       "numberOfHoursPlayed": 12.5,
       "numberOfHoursToComplete": 25,
       "isComplete": true
+    },
+    {
+      "name": "The Witcher 3: Wild Hunt",
+      "image": "https://howlongtobeat.com/gameimages/256px-TW3_Wild_Hunt_logo.png",
+      "platformId": 1,
+      "numberOfHoursToComplete": 103,
+      "priority": 8,
+      "numberOfHoursPlayed": 0,
+      "dateCreated": "2018-09-27T18:07:01.124Z",
+      "id": 10
+    },
+    {
+      "name": "Hollow Knight",
+      "image": "https://howlongtobeat.com/gameimages/Hollow_Knight_collection_branding.jpg",
+      "platformId": 2,
+      "numberOfHoursToComplete": 31.5,
+      "priority": 10,
+      "dateCreated": "2018-09-27T18:08:02.997Z",
+      "numberOfHoursPlayed": 0,
+      "id": 11
+    },
+    {
+      "name": "Life Is Strange",
+      "image": "https://howlongtobeat.com/gameimages/LifeIsStrange.jpg",
+      "platformId": 1,
+      "numberOfHoursToComplete": 16,
+      "priority": 7,
+      "dateCreated": "2018-09-27T23:03:23.742Z",
+      "numberOfHoursPlayed": 0,
+      "id": 12
     }
   ]
 }

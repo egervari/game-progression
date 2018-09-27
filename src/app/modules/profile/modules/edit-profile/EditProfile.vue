@@ -76,8 +76,6 @@
     },
     methods: {
       saveGame: function() {
-        console.log(Number(this.profile.languageId));
-
         this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
           ...this.profile,
           averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),

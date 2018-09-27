@@ -1,8 +1,7 @@
-import Vue from 'vue';
-
 import {AddGameStoreKeys} from "@/app/modules/games/modules/add-game/add-game-store-keys";
 import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
 import Router from '../../../../../router';
+import {addGameService} from "@/app/modules/games/modules/add-game/add-game-service";
 
 export default {
   state: {
@@ -10,17 +9,18 @@ export default {
   },
   mutations: {
     [AddGameStoreKeys.Mutations.SaveGameFailure]: function(state, error) {
-      console.log(error);
     }
   },
   actions: {
     [AddGameStoreKeys.Actions.SaveGame]: function({ commit, dispatch }, game) {
-      Vue.http.post('games', game)
-        .then(() => {
+      addGameService.createGame(
+        game,
+        () => {
           Router.replace('/games/listing');
           dispatch(GamesListingStoreKeys.Actions.RetrieveGames);
-        })
-        .catch(error => commit(AddGameStoreKeys.Mutations.SaveGameFailure, error))
+        },
+        error => commit(AddGameStoreKeys.Mutations.SaveGameFailure, error)
+      );
     }
   }
 };
