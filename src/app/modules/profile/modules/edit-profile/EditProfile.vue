@@ -6,11 +6,11 @@
       <Actions>
         <Button type="submit"
                 variant="save">
-          {{ $t('profile.editProfile.actions.save' )}}
+          {{ $t('profile.editProfile.actions.save') }}
         </Button>
         <Button variant="normal"
                 @click="goToProfile()">
-          {{ $t('profile.editProfile.actions.cancel' )}}
+          {{ $t('profile.editProfile.actions.cancel') }}
         </Button>
       </Actions>
     </Pane>
@@ -39,7 +39,7 @@
           <Label>{{ $t('profile.editProfile.labels.language') }}</Label>
           <select v-model="profile.languageId">
             <option value="0" disabled>
-              {{ $t('profile.editProfile.placeholders.language' )}}
+              {{ $t('profile.editProfile.placeholders.language') }}
             </option>
             <option v-for="language in languages"
                     v-bind:key="language.id"
@@ -49,7 +49,7 @@
           </select>
         </FormField>
         <FormField>
-          <Label>{{ $t('profile.editProfile.labels.averageNumberOfHoursToGamePerDay' )}}</Label>
+          <Label>{{ $t('profile.editProfile.labels.averageNumberOfHoursToGamePerDay') }}</Label>
           <input name="averageNumberOfHoursPerDay"
                  type="number"
                  min="0"

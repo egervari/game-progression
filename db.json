@@ -180,6 +180,16 @@
       "dateCreated": "2018-09-27T23:54:45.456Z",
       "numberOfHoursPlayed": 0,
       "id": 13
+    },
+    {
+      "name": "Etrian Odyssey",
+      "image": "https://howlongtobeat.com/gameimages/256px-Etrian_Odyssey.PNG",
+      "platformId": 4,
+      "numberOfHoursToComplete": 63,
+      "priority": 8,
+      "dateCreated": "2018-09-28T03:21:00.437Z",
+      "numberOfHoursPlayed": 0,
+      "id": 14
     }
   ]
 }
