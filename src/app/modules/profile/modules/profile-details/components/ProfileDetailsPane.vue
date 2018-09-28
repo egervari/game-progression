@@ -2,15 +2,15 @@
   <Pane id="profile-details-pane">
     <article>
       <p>
-        <strong>Name: </strong>
+        <strong>{{ $t('profile.profileDetails.labels.name') }}: </strong>
         <Emphasis>{{ fullName }}</Emphasis>
       </p>
       <p>
-        <strong>Language: </strong>
+        <strong>{{ $t('profile.profileDetails.labels.language') }}: </strong>
         <Emphasis> {{ language.name }}</Emphasis>
       </p>
       <p>
-        <strong>Average Number of Hours to Game Per Day: </strong>
+        <strong>{{ $t('profile.profileDetails.labels.averageNumberOfHoursToGamePerDay') }}: </strong>
         <Emphasis>{{ profile.averageNumberOfHoursPerDay }}</Emphasis>
       </p>
     </article>

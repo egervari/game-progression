@@ -44,17 +44,23 @@ export const appStore = {
         error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error)
       );
     },
-    [AppStoreKeys.Actions.RetrieveProfile]: function({ commit }) {
+    [AppStoreKeys.Actions.RetrieveProfile]: function({ commit, state }) {
       appService.getProfile(
-        profile => commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile),
+        profile => {
+          commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile);
+          appService.setLocale(state.languages, profile.languageId);
+        },
         error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error)
       );
     },
-    [AppStoreKeys.Actions.SelectLanguage]: function({ commit, state },  languageId) {
+    [AppStoreKeys.Actions.SelectLanguage]: function({ commit, state }, languageId) {
       appService.setLanguage(
         state.profile,
         languageId,
-        () => commit(AppStoreKeys.Mutations.SetLanguageSuccess, languageId),
+        () => {
+          commit(AppStoreKeys.Mutations.SetLanguageSuccess, languageId);
+          appService.setLocale(state.languages, languageId);
+        },
         error => commit(AppStoreKeys.Mutations.SetLanguageFailure, error)
       );
     }

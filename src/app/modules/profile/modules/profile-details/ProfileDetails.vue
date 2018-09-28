@@ -1,10 +1,10 @@
 <template>
   <section id="profile">
     <Pane>
-      <SectionHeader>My Profile</SectionHeader>
+      <SectionHeader>{{ $t('profile.profileDetails.title' )}}</SectionHeader>
       <Button variant="normal"
               @click="goToEditProfile()">
-        Edit
+        {{ $t('profile.profileDetails.actions.edit' )}}
       </Button>
     </Pane>
 

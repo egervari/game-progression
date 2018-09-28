@@ -3,11 +3,11 @@
     <h3>{{ game.name }}</h3>
     <Emphasis>{{ getPlatformNameById(game.platformId) }}</Emphasis>
     <p>
-      <strong>Est. Completed: </strong>
+      <strong>{{ $t('games.gamesListing.labels.estimatedCompleted') }}: </strong>
       <Emphasis>{{ estimatedCompletion }}%</Emphasis>
     </p>
     <p>
-      <strong>Completion Date: </strong>
+      <strong>{{ $t('games.gamesListing.labels.completionDate') }}: </strong>
       <Emphasis>09/30/2018</Emphasis>
     </p>
   </div>

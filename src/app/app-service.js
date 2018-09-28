@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import i18n from '../i18n';
 
 export const appService = {
   getLanguages: function(onSuccess, onFailure) {
@@ -21,5 +22,9 @@ export const appService = {
       languageId
     }).then(onSuccess)
       .catch(onFailure);
+  },
+
+  setLocale: function(languages, languageId) {
+    i18n.locale = languages.find(language => language.id === languageId).code
   }
 };

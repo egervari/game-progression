@@ -1,7 +1,7 @@
 <template>
   <section id="dashboard">
     <Pane>
-      <SectionHeader>Your Dashboard</SectionHeader>
+      <SectionHeader>{{ $t('dashboard.title')}}</SectionHeader>
     </Pane>
 
     <DashboardStatistics v-bind:games="games"></DashboardStatistics>

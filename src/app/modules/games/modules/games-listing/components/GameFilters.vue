@@ -2,11 +2,13 @@
   <Pane id="game-filters">
     <FormField>
       <Label>
-        Platform
+        {{ $t('games.gamesListing.labels.platform') }}
       </Label>
       <select v-bind:value="filters.platform"
               v-on:change="onPlatformFilterChanged">
-        <option value="0">All</option>
+        <option value="0">
+          {{ $t('games.gamesListing.filters.platform.all') }}
+        </option>
         <option v-for="platform in platforms"
                 v-bind:key="platform.id"
                 :value="platform.id">
@@ -17,32 +19,42 @@
 
     <FormField>
       <Label>
-        Completion
+        {{ $t('games.gamesListing.labels.completion' )}}
       </Label>
       <select v-bind:value="filters.completion"
               v-on:change="onCompletionFilterChanged">
-        <option value="all">All</option>
-        <option value="complete">Complete</option>
-        <option value="not-complete">Not Complete</option>
+        <option value="all">
+          {{ $t('games.gamesListing.filters.completion.all') }}
+        </option>
+        <option value="complete">
+          {{ $t('games.gamesListing.filters.completion.complete') }}
+        </option>
+        <option value="not-complete">
+          {{ $t('games.gamesListing.filters.completion.notComplete') }}
+        </option>
       </select>
     </FormField>
 
     <FormField>
       <Label>
-        Sort
+        {{ $t('games.gamesListing.labels.sort') }}
       </Label>
       <select v-bind:value="filters.sortBy"
               v-on:change="onSortByChanged">
-        <option value="priority">Priority</option>
-        <option value="dateCreated">Date Created</option>
+        <option value="priority">
+          {{ $t('games.gamesListing.filters.sort.priority') }}
+        </option>
+        <option value="dateCreated">
+          {{ $t('games.gamesListing.filters.sort.dateCreated')}}
+        </option>
       </select>
     </FormField>
 
     <FormField>
       <Label>
-        Search
+        {{ $t('games.gamesListing.labels.search') }}
       </Label>
-      <input placeholder="Enter a game name..."
+      <input v-bind:placeholder="$t('games.gamesListing.placeholders.searchText')"
              v-bind:value="filters.searchText"
              v-on:change="onSearchTextChanged" />
     </FormField>
@@ -50,12 +62,12 @@
     <Actions>
       <Button variant="normal"
               @click="goToAddGame()">
-        Add Game
+        {{ $t('games.gamesListing.actions.addGame') }}
       </Button>
       <Button variant="warn"
               v-bind:disabled="isDeleteDisabled()"
               @click="deleteSelectedGames()">
-        Delete {{ numberOfSelections }} Games
+        {{ $t('games.gamesListing.actions.deleteGames', [numberOfSelections]) }}
       </Button>
     </Actions>
   </Pane>

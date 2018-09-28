@@ -1,7 +1,11 @@
 <template>
   <nav id="navigation">
-    <router-link to="/dashboard">Dashboard</router-link>
-    <router-link to="/games/listing">Games</router-link>
+    <router-link to="/dashboard">
+      {{ $t('app.navigation.dashboard') }}
+    </router-link>
+    <router-link to="/games/listing">
+      {{ $t('app.navigation.games') }}
+    </router-link>
   </nav>
 </template>
 

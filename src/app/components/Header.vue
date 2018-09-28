@@ -1,6 +1,6 @@
 <template>
   <header id="header">
-    <h1>Game Progression</h1>
+    <h1>{{ $t('app.title') }}</h1>
     <UserProfileHeader v-bind:profile="profile"></UserProfileHeader>
   </header>
 </template>

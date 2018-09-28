@@ -2,15 +2,15 @@
   <form id="edit-profile"
         @submit="saveProfile">
     <Pane>
-      <SectionHeader>Edit Your Profile</SectionHeader>
+      <SectionHeader>{{ $t('profile.editProfile.title') }}</SectionHeader>
       <Actions>
         <Button type="submit"
                 variant="save">
-          Save
+          {{ $t('profile.editProfile.actions.save' )}}
         </Button>
         <Button variant="normal"
                 @click="goToProfile()">
-          Cancel
+          {{ $t('profile.editProfile.actions.cancel' )}}
         </Button>
       </Actions>
     </Pane>
@@ -18,23 +18,25 @@
     <Pane>
       <FormGroup>
         <FormField>
-          <Label>First Name</Label>
+          <Label>{{ $t('profile.editProfile.labels.firstName') }}</Label>
           <input v-model="profile.firstName" />
           <ErrorMessage v-if="errors.firstName">
             {{ errors.firstName }}
           </ErrorMessage>
         </FormField>
         <FormField>
-          <Label>Last Name</Label>
+          <Label>{{ $t('profile.editProfile.labels.lastName') }}</Label>
           <input v-model="profile.lastName" />
           <ErrorMessage v-if="errors.lastName">
             {{ errors.lastName }}
           </ErrorMessage>
         </FormField>
         <FormField>
-          <Label>Language</Label>
+          <Label>{{ $t('profile.editProfile.labels.language') }}</Label>
           <select v-model="profile.languageId">
-            <option value="0" disabled>Choose a language...</option>
+            <option value="0" disabled>
+              {{ $t('profile.editProfile.placeholders.language' )}}
+            </option>
             <option v-for="language in languages"
                     v-bind:key="language.id"
                     v-bind:value="language.id">
@@ -43,7 +45,7 @@
           </select>
         </FormField>
         <FormField>
-          <Label>Average Number of Hours to Game Per Day</Label>
+          <Label>{{ $t('profile.editProfile.labels.averageNumberOfHoursToGamePerDay' )}}</Label>
           <input type="number"
                  min="0"
                  v-model="profile.averageNumberOfHoursPerDay" />

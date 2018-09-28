@@ -2,15 +2,17 @@
   <form id="add-game"
         @submit="saveGame">
     <Pane>
-      <SectionHeader>Add Game</SectionHeader>
+      <SectionHeader>
+        {{ $t('games.addGame.title' )}}
+      </SectionHeader>
       <Actions>
         <Button type="submit"
                 variant="save">
-          Save
+          {{ $t('games.addGame.actions.save') }}
         </Button>
         <Button variant="normal"
                 @click="goToGames()">
-          Cancel
+          {{ $t('games.addGame.actions.cancel') }}
         </Button>
       </Actions>
     </Pane>
@@ -18,23 +20,27 @@
     <Pane>
       <FormGroup>
         <FormField>
-          <Label>Name</Label>
+          <Label>
+            {{ $t('games.addGame.labels.name') }}
+          </Label>
           <input v-model="game.name" />
           <ErrorMessage v-if="errors.name">
             {{ errors.name }}
           </ErrorMessage>
         </FormField>
         <FormField>
-          <Label>Image URL</Label>
+          <Label>{{ $t('games.addGame.labels.imageUrl') }}</Label>
           <input v-model="game.image" />
           <ErrorMessage v-if="errors.image">
             {{ errors.image }}
           </ErrorMessage>
         </FormField>
         <FormField>
-          <Label>Platform</Label>
+          <Label>{{ $t('games.addGame.labels.platform') }}</Label>
           <select v-model="game.platformId">
-            <option value="0" disabled>Choose a Platform...</option>
+            <option value="0" disabled>
+              {{ $t('games.addGame.placeholders.platform') }}
+            </option>
             <option v-for="platform in platforms"
                     v-bind:key="platform.id"
                     v-bind:value="platform.id">
@@ -46,7 +52,9 @@
           </ErrorMessage>
         </FormField>
         <FormField>
-          <Label>Number of Hours to Complete</Label>
+          <Label>
+            {{ $t('games.addGame.labels.numberOfHoursToComplete') }}
+          </Label>
           <input v-model="game.numberOfHoursToComplete"
                  type="number" />
           <ErrorMessage v-if="errors.numberOfHoursToComplete">
@@ -54,9 +62,13 @@
           </ErrorMessage>
         </FormField>
         <FormField>
-          <Label>Priority</Label>
+          <Label>
+            {{ $t('games.addGame.labels.priority') }}
+          </Label>
           <select v-model="game.priority">
-            <option value="0" disabled>Choose a priority</option>
+            <option value="0" disabled>
+              {{ $t('games.addGame.placeholders.priority') }}
+            </option>
             <option v-for="number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
                     v-bind:key="number"
                     v-bind:value="number">

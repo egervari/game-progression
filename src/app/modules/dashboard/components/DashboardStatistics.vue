@@ -2,10 +2,13 @@
   <Pane id="dashboard-statistics">
     <section>
       <PaneHeader>
-        Time Remaining: <Emphasis>{{ totalDaysRemaining }} Days</Emphasis>
+        {{ $t('dashboard.labels.timeRemaining') }}:
+        <Emphasis>
+          {{ totalDaysRemaining }} {{ $t('dashboard.labels.days') }}
+        </Emphasis>
       </PaneHeader>
       <p>
-        <strong>Number of Unfinished Games: </strong>
+        <strong>{{ $t('dashboard.labels.numberOfUnfinishedGames') }}: </strong>
         <Emphasis>{{ numberOfUnfinishedGames }}</Emphasis>
       </p>
       <ProgressBar v-bind:value="numberOfUnfinishedGames"
@@ -13,7 +16,7 @@
                    type="unfinished">
       </ProgressBar>
       <p>
-        <strong>Number of Finished Games: </strong>
+        <strong>{{ $t('dashboard.labels.numberOfFinishedGames') }}: </strong>
         <Emphasis>{{ numberOfFinishedGames }}</Emphasis>
       </p>
       <ProgressBar v-bind:value="numberOfFinishedGames"
