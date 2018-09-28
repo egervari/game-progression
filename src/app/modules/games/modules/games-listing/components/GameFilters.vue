@@ -48,11 +48,11 @@
     </FormField>
 
     <Actions>
-      <Button type="normal"
+      <Button variant="normal"
               @click="goToAddGame()">
         Add Game
       </Button>
-      <Button type="warn"
+      <Button variant="warn"
               v-bind:disabled="isDeleteDisabled()"
               @click="deleteSelectedGames()">
         Delete {{ numberOfSelections }} Games

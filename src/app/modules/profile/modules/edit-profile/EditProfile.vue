@@ -1,13 +1,14 @@
 <template>
-  <section id="edit-profile">
+  <form id="edit-profile"
+        @submit="saveProfile">
     <Pane>
       <SectionHeader>Edit Your Profile</SectionHeader>
       <Actions>
-        <Button type="save"
-                @click="saveGame()">
+        <Button type="submit"
+                variant="save">
           Save
         </Button>
-        <Button type="normal"
+        <Button variant="normal"
                 @click="goToProfile()">
           Cancel
         </Button>
@@ -19,10 +20,16 @@
         <FormField>
           <Label>First Name</Label>
           <input v-model="profile.firstName" />
+          <ErrorMessage v-if="errors.firstName">
+            {{ errors.firstName }}
+          </ErrorMessage>
         </FormField>
         <FormField>
           <Label>Last Name</Label>
           <input v-model="profile.lastName" />
+          <ErrorMessage v-if="errors.lastName">
+            {{ errors.lastName }}
+          </ErrorMessage>
         </FormField>
         <FormField>
           <Label>Language</Label>
@@ -37,11 +44,16 @@
         </FormField>
         <FormField>
           <Label>Average Number of Hours to Game Per Day</Label>
-          <input v-model="profile.averageNumberOfHoursPerDay" />
+          <input type="number"
+                 min="0"
+                 v-model="profile.averageNumberOfHoursPerDay" />
+          <ErrorMessage v-if="errors.averageNumberOfHoursPerDay">
+            {{ errors.averageNumberOfHoursPerDay }}
+          </ErrorMessage>
         </FormField>
       </FormGroup>
     </Pane>
-  </section>
+  </form>
 </template>
 
 <script>
@@ -53,14 +65,16 @@
   import Label from "@/app/modules/ui/components/Label";
   import FormGroup from "@/app/modules/ui/components/FormGroup";
   import {EditProfileStoreKeys} from "@/app/modules/profile/modules/edit-profile/edit-profile-store-keys";
+  import ErrorMessage from "@/app/modules/ui/components/ErrorMessage";
   export default {
     name: 'EditProfile',
-    components: {FormGroup, Label, FormField, Actions, Button, SectionHeader, Pane},
+    components: {ErrorMessage, FormGroup, Label, FormField, Actions, Button, SectionHeader, Pane},
     data: function() {
       return {
         profile: {
           ...this.$store.state.profile
-        }
+        },
+        errors: {}
       };
     },
     computed: {
@@ -69,12 +83,34 @@
       }
     },
     methods: {
-      saveGame: function() {
-        this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
-          ...this.profile,
-          averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
-          languageId: Number(this.profile.languageId)
-        });
+      isValid: function() {
+        this.errors = {};
+
+        if (!this.profile.firstName) {
+          this.errors.firstName = 'Your first name is required';
+        }
+
+        if (!this.profile.lastName) {
+          this.errors.lastName = 'Your last name is required';
+        }
+
+        if (!this.profile.averageNumberOfHoursPerDay) {
+          this.errors.averageNumberOfHoursPerDay = 'This is required';
+        }
+
+        return Object.keys(this.errors).length === 0;
+      },
+
+      saveProfile: function(event) {
+        event.preventDefault();
+
+        if (this.isValid()) {
+          this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
+            ...this.profile,
+            averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
+            languageId: Number(this.profile.languageId)
+          });
+        }
       },
 
       goToProfile: function() {

@@ -2,7 +2,7 @@
   <section id="profile">
     <Pane>
       <SectionHeader>My Profile</SectionHeader>
-      <Button type="normal"
+      <Button variant="normal"
               @click="goToEditProfile()">
         Edit
       </Button>
