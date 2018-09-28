@@ -1,3 +1,6 @@
+const NumberOfPriorities = 10;
+const NumberOfHoursInADay = 24;
+
 export const Game = {
   numberOfFinishedGames: function(games) {
     return games.reduce((total, game) => {
@@ -8,7 +11,9 @@ export const Game = {
   getTotalDaysRemaining: function(games) {
     return Number(
       games.reduce((total, game) => {
-        return total + Math.max(game.numberOfHoursToComplete - game.numberOfHoursPlayed, 0) / 24;
+        return total + Math.max(
+          game.numberOfHoursToComplete - game.numberOfHoursPlayed, 0
+        ) / NumberOfHoursInADay;
       }, 0)
     ).toFixed(1);
   },
@@ -24,6 +29,6 @@ export const Game = {
   },
 
   getPriorityArray: function() {
-    return new Array(10).fill(1).map((number, index) => number + index);
+    return new Array(NumberOfPriorities).fill(1).map((number, index) => number + index);
   }
 };
