@@ -23,21 +23,27 @@
           <Label>
             {{ $t('games.addGame.labels.name') }}
           </Label>
-          <input v-model="game.name" />
-          <ErrorMessage v-if="errors.name">
-            {{ errors.name }}
+          <input name="name"
+                 v-model="game.name"
+                 v-validate="'required'" />
+          <ErrorMessage v-show="errors.has('name')">
+            {{ errors.first('name') }}
           </ErrorMessage>
         </FormField>
         <FormField>
           <Label>{{ $t('games.addGame.labels.imageUrl') }}</Label>
-          <input v-model="game.image" />
-          <ErrorMessage v-if="errors.image">
-            {{ errors.image }}
+          <input name="image"
+                 v-model="game.image"
+                 v-validate="'required'" />
+          <ErrorMessage v-show="errors.has('image')">
+            {{ errors.first('image') }}
           </ErrorMessage>
         </FormField>
         <FormField>
           <Label>{{ $t('games.addGame.labels.platform') }}</Label>
-          <select v-model="game.platformId">
+          <select name="platformId"
+                  v-model="game.platformId"
+                  v-validate="'min_value:1'">
             <option value="0" disabled>
               {{ $t('games.addGame.placeholders.platform') }}
             </option>
@@ -47,25 +53,29 @@
               {{ platform.name }}
             </option>
           </select>
-          <ErrorMessage v-if="errors.platformId">
-            {{ errors.platformId }}
+          <ErrorMessage v-show="errors.has('platformId')">
+            {{ errors.first('platformId') }}
           </ErrorMessage>
         </FormField>
         <FormField>
           <Label>
             {{ $t('games.addGame.labels.numberOfHoursToComplete') }}
           </Label>
-          <input v-model="game.numberOfHoursToComplete"
-                 type="number" />
-          <ErrorMessage v-if="errors.numberOfHoursToComplete">
-            {{ errors.numberOfHoursToComplete }}
+          <input name="numberOfHoursToComplete"
+                 type="number"
+                 v-model="game.numberOfHoursToComplete"
+                 v-validate="'required|min_value:0'" />
+          <ErrorMessage v-show="errors.has('numberOfHoursToComplete')">
+            {{ errors.first('numberOfHoursToComplete') }}
           </ErrorMessage>
         </FormField>
         <FormField>
           <Label>
             {{ $t('games.addGame.labels.priority') }}
           </Label>
-          <select v-model="game.priority">
+          <select name="priority"
+                  v-model="game.priority"
+                  v-validate="'min_value:1'">
             <option value="0" disabled>
               {{ $t('games.addGame.placeholders.priority') }}
             </option>
@@ -75,8 +85,8 @@
               {{ number }}
             </option>
           </select>
-          <ErrorMessage v-if="errors.priority">
-            {{ errors.priority }}
+          <ErrorMessage v-show="errors.has('priority')">
+            {{ errors.first('priority') }}
           </ErrorMessage>
         </FormField>
       </FormGroup>
@@ -105,8 +115,7 @@
           platformId: 0,
           numberOfHoursToComplete: '',
           priority: 0
-        },
-        errors: {}
+        }
       }
     },
     computed: {
@@ -115,45 +124,21 @@
       }
     },
     methods: {
-      isValid: function() {
-        this.errors = {};
-
-        if (!this.game.name) {
-          this.errors.name = 'The name is required';
-        }
-
-        if (!this.game.image) {
-          this.errors.image = 'The image is required';
-        }
-
-        if (this.game.platformId === 0) {
-          this.errors.platformId = 'The platform must be selected';
-        }
-
-        if (!this.game.numberOfHoursToComplete) {
-          this.errors.numberOfHoursToComplete = 'The number of hours is required';
-        }
-
-        if (this.game.priority === 0) {
-          this.errors.priority = 'The number of hours is required';
-        }
-
-        return Object.keys(this.errors).length === 0;
-      },
-
       saveGame: function(event) {
         event.preventDefault();
 
-        if (this.isValid()) {
-          this.$store.dispatch(AddGameStoreKeys.Actions.SaveGame, {
-            ...this.game,
-            dateCreated: new Date().toISOString(),
-            numberOfHoursToComplete: Number(this.game.numberOfHoursToComplete),
-            numberOfHoursPlayed: 0,
-            platformId: Number(this.game.platformId),
-            priority: Number(this.game.priority)
-          });
-        }
+        this.$validator.validate().then(isValid => {
+          if (isValid) {
+            this.$store.dispatch(AddGameStoreKeys.Actions.SaveGame, {
+              ...this.game,
+              dateCreated: new Date().toISOString(),
+              numberOfHoursToComplete: Number(this.game.numberOfHoursToComplete),
+              numberOfHoursPlayed: 0,
+              platformId: Number(this.game.platformId),
+              priority: Number(this.game.priority)
+            });
+          }
+        });
       },
 
       goToGames: function() {

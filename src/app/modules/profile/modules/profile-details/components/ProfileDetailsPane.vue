@@ -1,13 +1,13 @@
 <template>
   <Pane id="profile-details-pane">
-    <article>
+    <article v-if="profile">
       <p>
         <strong>{{ $t('profile.profileDetails.labels.name') }}: </strong>
         <Emphasis>{{ fullName }}</Emphasis>
       </p>
       <p>
         <strong>{{ $t('profile.profileDetails.labels.language') }}: </strong>
-        <Emphasis> {{ language.name }}</Emphasis>
+        <Emphasis>{{ language.name }}</Emphasis>
       </p>
       <p>
         <strong>{{ $t('profile.profileDetails.labels.averageNumberOfHoursToGamePerDay') }}: </strong>

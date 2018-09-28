@@ -19,16 +19,20 @@
       <FormGroup>
         <FormField>
           <Label>{{ $t('profile.editProfile.labels.firstName') }}</Label>
-          <input v-model="profile.firstName" />
-          <ErrorMessage v-if="errors.firstName">
-            {{ errors.firstName }}
+          <input name="firstName"
+                 v-model="profile.firstName"
+                 v-validate="'required|alpha_spaces'" />
+          <ErrorMessage v-show="errors.has('firstName')">
+            {{ errors.first('firstName') }}
           </ErrorMessage>
         </FormField>
         <FormField>
           <Label>{{ $t('profile.editProfile.labels.lastName') }}</Label>
-          <input v-model="profile.lastName" />
-          <ErrorMessage v-if="errors.lastName">
-            {{ errors.lastName }}
+          <input name="lastName"
+                 v-model="profile.lastName"
+                 v-validate="'required|alpha_spaces'" />
+          <ErrorMessage v-show="errors.has('lastName')">
+            {{ errors.first('lastName') }}
           </ErrorMessage>
         </FormField>
         <FormField>
@@ -46,11 +50,13 @@
         </FormField>
         <FormField>
           <Label>{{ $t('profile.editProfile.labels.averageNumberOfHoursToGamePerDay' )}}</Label>
-          <input type="number"
+          <input name="averageNumberOfHoursPerDay"
+                 type="number"
                  min="0"
+                 v-validate="'required|min_value:0'"
                  v-model="profile.averageNumberOfHoursPerDay" />
-          <ErrorMessage v-if="errors.averageNumberOfHoursPerDay">
-            {{ errors.averageNumberOfHoursPerDay }}
+          <ErrorMessage v-show="errors.has('averageNumberOfHoursPerDay')">
+            {{ errors.first('averageNumberOfHoursPerDay') }}
           </ErrorMessage>
         </FormField>
       </FormGroup>
@@ -75,8 +81,7 @@
       return {
         profile: {
           ...this.$store.state.profile
-        },
-        errors: {}
+        }
       };
     },
     computed: {
@@ -85,34 +90,18 @@
       }
     },
     methods: {
-      isValid: function() {
-        this.errors = {};
-
-        if (!this.profile.firstName) {
-          this.errors.firstName = 'Your first name is required';
-        }
-
-        if (!this.profile.lastName) {
-          this.errors.lastName = 'Your last name is required';
-        }
-
-        if (!this.profile.averageNumberOfHoursPerDay) {
-          this.errors.averageNumberOfHoursPerDay = 'This is required';
-        }
-
-        return Object.keys(this.errors).length === 0;
-      },
-
       saveProfile: function(event) {
         event.preventDefault();
 
-        if (this.isValid()) {
-          this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
-            ...this.profile,
-            averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
-            languageId: Number(this.profile.languageId)
-          });
-        }
+        this.$validator.validate().then(isValid => {
+          if (isValid) {
+            this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
+              ...this.profile,
+              averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
+              languageId: Number(this.profile.languageId)
+            });
+          }
+        });
       },
 
       goToProfile: function() {
