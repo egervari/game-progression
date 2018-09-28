@@ -28,10 +28,7 @@ export const appStore = {
 
     },
     [AppStoreKeys.Mutations.SetLanguageSuccess]: function(state, languageId) {
-      state.profile = {
-        ...state.profile,
-        languageId
-      };
+      state.profile.languageId = languageId;
     },
     [AppStoreKeys.Mutations.SetLanguageFailure]: function() {
 

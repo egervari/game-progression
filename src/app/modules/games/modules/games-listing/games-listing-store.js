@@ -20,28 +20,16 @@ export default {
 
     },
     [GamesListingStoreKeys.Mutations.SetPlatformFilter]: function(state, platform) {
-      state.filters = {
-        ...state.filters,
-        platform: platform
-      };
+      state.filters.platform = platform;
     },
     [GamesListingStoreKeys.Mutations.SetCompletionFilter]: function(state, completion) {
-      state.filters = {
-        ...state.filters,
-        completion: completion
-      };
+      state.filters.completion = completion;
     },
     [GamesListingStoreKeys.Mutations.SetSortBy]: function(state, sortBy) {
-      state.filters = {
-        ...state.filters,
-        sortBy: sortBy
-      };
+      state.filters.sortBy = sortBy;
     },
     [GamesListingStoreKeys.Mutations.SetSearchText]: function(state, searchText) {
-      state.filters = {
-        ...state.filters,
-        searchText: searchText
-      };
+      state.filters.searchText = searchText;
     },
     [GamesListingStoreKeys.Mutations.ToggleGameSelection]: function(state, gameId) {
       state.gameSelections = {
