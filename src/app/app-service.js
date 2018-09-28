@@ -13,5 +13,13 @@ export const appService = {
       .then(response => response.json())
       .then(onSuccess)
       .catch(onFailure);
+  },
+
+  setLanguage: function(profile, languageId, onSuccess, onFailure) {
+    Vue.http.put('profile', {
+      ...profile,
+      languageId
+    }).then(onSuccess)
+      .catch(onFailure);
   }
 };

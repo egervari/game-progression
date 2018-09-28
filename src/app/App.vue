@@ -1,11 +1,14 @@
 <template>
   <Layout>
-    <Header v-bind:profile="profile"></Header>
+    <Header v-bind:profile="profile">
+    </Header>
     <Navigation></Navigation>
     <MainContent>
       <router-view/>
     </MainContent>
-    <Footer v-bind:languages="languages"></Footer>
+    <Footer v-bind:languages="languages"
+            v-bind:profile="profile">
+    </Footer>
   </Layout>
 </template>
 

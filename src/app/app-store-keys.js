@@ -3,10 +3,13 @@ export const AppStoreKeys = {
     RetrieveLanguagesSuccess: 'retrieveLanguagesSuccess',
     RetrieveLanguagesFailure: 'retrieveLanguagesFailure',
     RetrieveProfileSuccess: 'retrieveProfileSuccess',
-    RetrieveProfileFailure: 'retrieveProfileFailure'
+    RetrieveProfileFailure: 'retrieveProfileFailure',
+    SetLanguageSuccess: 'setLanguageSuccess',
+    SetLanguageFailure: 'setLanguageFailure'
   },
   Actions: {
     RetrieveLanguages: 'retrieveLanguages',
     RetrieveProfile: 'retrieveProfile',
+    SelectLanguage: 'selectLanguage'
   }
 };
