@@ -3,6 +3,8 @@
 </template>
 
 <script>
+  import {Game} from "@/app/models/game";
+
   export default {
     name: 'GameCardCompletionIndicator',
     props: ['game'],
@@ -10,7 +12,7 @@
       type: function() {
         if (this.game.isComplete) {
           return 'complete';
-        } else if (this.game.numberOfHoursPlayed > 0) {
+        } else if (Game.isGameInProgress(this.game)) {
           return 'in-progress';
         } else {
           return 'not-started';

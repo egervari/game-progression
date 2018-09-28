@@ -18,7 +18,7 @@
 <style lang="scss" scoped>
   @import '../styles/colors.scss';
 
-  header#header {
+  #header {
     align-items: center;
     background: $dark-blue;
     color: $text-on-dark;

@@ -7,14 +7,14 @@
 </template>
 
 <script>
+  import {Profile} from "@/app/models/profile";
+
   export default {
     name: 'UserProfileHeader',
     props: ['profile'],
     computed: {
       fullName: function() {
-        return this.profile ?
-          this.profile.firstName + ' ' + this.profile.lastName :
-          '';
+        return Profile.getFullName(this.profile);
       }
     },
     methods: {

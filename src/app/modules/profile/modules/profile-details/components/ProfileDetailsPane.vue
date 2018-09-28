@@ -20,16 +20,18 @@
 <script>
   import Pane from "@/app/modules/ui/components/Pane";
   import Emphasis from "@/app/modules/ui/components/Emphasis";
+  import {Language} from "@/app/models/language";
+  import {Profile} from "@/app/models/profile";
   export default {
     name: 'ProfileDetailsPane',
     components: {Emphasis, Pane},
     props: ['profile', 'languages'],
     computed: {
       fullName: function() {
-        return this.profile.firstName + ' ' + this.profile.lastName;
+        return Profile.getFullName(this.profile);
       },
       language: function() {
-        return this.languages.find(language => language.id === this.profile.languageId)
+        return Language.getLanguageById(this.languages, this.profile.languageId)
       }
     }
   }

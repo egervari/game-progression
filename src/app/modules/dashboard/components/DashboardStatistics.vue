@@ -32,6 +32,7 @@
   import ProgressBar from './ProgressBar';
   import PaneHeader from "@/app/modules/ui/components/PaneHeader";
   import Emphasis from "@/app/modules/ui/components/Emphasis";
+  import {Game} from "@/app/models/game";
 
   export default {
     name: 'DashboardStatistics',
@@ -39,11 +40,7 @@
     props: ['games'],
     computed: {
       totalDaysRemaining: function() {
-        return Number(
-          this.games.reduce((total, game) => {
-            return total + Math.max(game.numberOfHoursToComplete - game.numberOfHoursPlayed, 0) / 24;
-          }, 0)
-        ).toFixed(1);
+        return Game.getTotalDaysRemaining(this.games);
       },
 
       numberOfUnfinishedGames: function() {
@@ -51,9 +48,7 @@
       },
 
       numberOfFinishedGames: function() {
-        return this.games.reduce((total, game) => {
-          return total + (game.isComplete ? 1 : 0)
-        }, 0);
+        return Game.numberOfFinishedGames(this.games);
       },
 
       numberOfTotalGames: function() {
