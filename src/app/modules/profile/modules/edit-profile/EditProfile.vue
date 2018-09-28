@@ -20,7 +20,7 @@
         <FormField>
           <Label>{{ $t('profile.editProfile.labels.firstName') }}</Label>
           <input name="firstName"
-                 v-model="profile.firstName"
+                 v-model.trim="profile.firstName"
                  v-validate="'required|alpha_spaces'" />
           <ErrorMessage v-show="errors.has('firstName')">
             {{ errors.first('firstName') }}
@@ -29,7 +29,7 @@
         <FormField>
           <Label>{{ $t('profile.editProfile.labels.lastName') }}</Label>
           <input name="lastName"
-                 v-model="profile.lastName"
+                 v-model.trim="profile.lastName"
                  v-validate="'required|alpha_spaces'" />
           <ErrorMessage v-show="errors.has('lastName')">
             {{ errors.first('lastName') }}

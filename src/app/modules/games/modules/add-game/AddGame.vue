@@ -24,7 +24,7 @@
             {{ $t('games.addGame.labels.name') }}
           </Label>
           <input name="name"
-                 v-model="game.name"
+                 v-model.trim="game.name"
                  v-validate="'required'" />
           <ErrorMessage v-show="errors.has('name')">
             {{ errors.first('name') }}
@@ -33,7 +33,7 @@
         <FormField>
           <Label>{{ $t('games.addGame.labels.imageUrl') }}</Label>
           <input name="image"
-                 v-model="game.image"
+                 v-model.trim="game.image"
                  v-validate="'required'" />
           <ErrorMessage v-show="errors.has('image')">
             {{ errors.first('image') }}
