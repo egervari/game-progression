@@ -32,7 +32,7 @@ export default new Router({
           component: () => import('./app/modules/games/modules/add-game/AddGame')
         },
         {
-          path: ':id',
+          path: ':gameId',
           name: 'edit-game',
           component: () => import('./app/modules/games/modules/edit-game/EditGame')
         },

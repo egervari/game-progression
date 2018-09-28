@@ -66,7 +66,16 @@ export default {
       }
     },
     editGame: {
-
+      title: 'Edit {0}',
+      actions: {
+        save: 'Save',
+        cancel: 'Cancel'
+      },
+      labels: {
+        numberOfHoursPlayed: 'Number Of Hours Played',
+        priority: 'Priority',
+        isComplete: 'Is Complete'
+      }
     }
   },
   profile: {

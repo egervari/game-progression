@@ -79,7 +79,7 @@
             <option value="0" disabled>
               {{ $t('games.addGame.placeholders.priority') }}
             </option>
-            <option v-for="number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+            <option v-for="number in priorityNumbers"
                     v-bind:key="number"
                     v-bind:value="number">
               {{ number }}
@@ -104,6 +104,7 @@
   import {AddGameStoreKeys} from "@/app/modules/games/modules/add-game/add-game-store-keys";
   import Label from "@/app/modules/ui/components/Label";
   import ErrorMessage from "@/app/modules/ui/components/ErrorMessage";
+  import {Game} from "@/app/models/game";
   export default {
     name: 'AddGame',
     components: {ErrorMessage, Label, FormField, FormGroup, Button, Actions, SectionHeader, Pane},
@@ -121,6 +122,9 @@
     computed: {
       platforms: function() {
         return this.$store.state.gamesState.platforms;
+      },
+      priorityNumbers: function() {
+        return Game.getPriorityArray();
       }
     },
     methods: {

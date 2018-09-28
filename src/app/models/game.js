@@ -21,5 +21,9 @@ export const Game = {
     return Number(
       Math.min(game.numberOfHoursPlayed / game.numberOfHoursToComplete * 100, 100)
     ).toFixed(1);
+  },
+
+  getPriorityArray: function() {
+    return new Array(10).fill(1).map((number, index) => number + index);
   }
 };

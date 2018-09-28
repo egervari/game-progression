@@ -29,7 +29,7 @@
       },
 
       goToEditGame: function() {
-        this.$router.push('/games/edit-game')
+        this.$router.push('/games/' + this.game.id)
       }
     }
   }
