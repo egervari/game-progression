@@ -35,10 +35,7 @@
         return this.$store.state.gamesState.gamesListingState.gameSelections;
       },
       numberOfSelections: function() {
-        return Object.keys(this.gameSelections).reduce(
-          (total, key) => total + (this.gameSelections[key] ? 1 : 0),
-          0
-        );
+       return this.$store.getters.numberOfSelections;
       }
     }
   }
