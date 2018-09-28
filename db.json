@@ -166,10 +166,11 @@
       "image": "https://howlongtobeat.com/gameimages/LifeIsStrange.jpg",
       "platformId": 1,
       "numberOfHoursToComplete": 16,
-      "priority": 7,
+      "priority": 10,
       "dateCreated": "2018-09-27T23:03:23.742Z",
-      "numberOfHoursPlayed": 0,
-      "id": 12
+      "numberOfHoursPlayed": 25,
+      "id": 12,
+      "isComplete": true
     },
     {
       "name": "Tomb Raider",
@@ -178,7 +179,7 @@
       "numberOfHoursToComplete": 15.5,
       "priority": 5,
       "dateCreated": "2018-09-27T23:54:45.456Z",
-      "numberOfHoursPlayed": 0,
+      "numberOfHoursPlayed": 40,
       "id": 13
     },
     {

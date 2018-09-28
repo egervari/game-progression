@@ -4,7 +4,7 @@ export const gamesListingService = {
   getGames: function(filters, onSuccess, onFailure) {
     Vue.http.get(
       'games?' +
-      `_sort=${filters.sortBy}&` +
+      `_sort=${filters.sortBy}&_order=desc&` +
       (filters.platform ? `platformId=${filters.platform}&` : '') +
       (filters.completion === 'complete' ? 'isComplete=true&' : '') +
       (filters.completion === 'not-complete' ? 'isComplete=false&' : '') +
