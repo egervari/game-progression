@@ -2,6 +2,16 @@ const NumberOfPriorities = 10;
 const NumberOfHoursInADay = 24;
 
 export const Game = {
+  createGame: function() {
+    return {
+      name: '',
+      image: '',
+      platformId: 0,
+      numberOfHoursToComplete: '',
+      priority: 0
+    };
+  },
+
   numberOfFinishedGames: function(games) {
     return games.reduce((total, game) => {
       return total + (game.isComplete ? 1 : 0)

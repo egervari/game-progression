@@ -110,13 +110,7 @@
     components: {ErrorMessage, Label, FormField, FormGroup, Button, Actions, SectionHeader, Pane},
     data: function() {
       return {
-        game: {
-          name: '',
-          image: '',
-          platformId: 0,
-          numberOfHoursToComplete: '',
-          priority: 0
-        }
+        game: Game.createGame()
       }
     },
     computed: {
