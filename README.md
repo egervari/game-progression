@@ -10,14 +10,9 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Runs the JSON Server
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
+npm run json-server
 ```
 
 ### Lints and fixes files
