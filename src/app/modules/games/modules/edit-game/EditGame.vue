@@ -1,7 +1,7 @@
 <template>
   <form id="add-game"
         v-if="game"
-        @submit="saveGame">
+        @submit.prevent="saveGame">
     <Pane>
       <SectionHeader>
         {{ $t('games.editGame.title', [game.name] )}}
@@ -23,7 +23,7 @@
         <FormField>
           <Label>{{ $t('games.editGame.labels.numberOfHoursPlayed') }}</Label>
           <input name="numberOfHoursPlayed"
-                 v-model="game.numberOfHoursPlayed"
+                 v-model.number="game.numberOfHoursPlayed"
                  v-validate="'required|min_value:0'" />
           <ErrorMessage v-show="errors.has('numberOfHoursPlayed')">
             {{ errors.first('numberOfHoursPlayed') }}
@@ -32,7 +32,7 @@
         <FormField>
           <Label>{{ $t('games.editGame.labels.priority') }}</Label>
           <select name="priority"
-                  v-model="game.priority"
+                  v-model.number="game.priority"
                   v-validate="'min_value:1'">
             <option value="0" disabled>
               {{ $t('games.addGame.placeholders.priority') }}
@@ -86,16 +86,10 @@
       }
     },
     methods: {
-      saveGame: function(event) {
-        event.preventDefault();
-
+      saveGame: function() {
         this.$validator.validate().then(isValid => {
           if (isValid) {
-            this.$store.dispatch(EditGameStoreKeys.Actions.UpdateGame, {
-              ...this.game,
-              numberOfHoursPlayed: Number(this.game.numberOfHoursPlayed),
-              priority: Number(this.game.priority)
-            });
+            this.$store.dispatch(EditGameStoreKeys.Actions.UpdateGame, this.game);
           }
         });
       },

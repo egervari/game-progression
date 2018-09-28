@@ -1,6 +1,6 @@
 <template>
   <form id="add-game"
-        @submit="saveGame">
+        @submit.prevent="saveGame">
     <Pane>
       <SectionHeader>
         {{ $t('games.addGame.title' )}}
@@ -42,7 +42,7 @@
         <FormField>
           <Label>{{ $t('games.addGame.labels.platform') }}</Label>
           <select name="platformId"
-                  v-model="game.platformId"
+                  v-model.number="game.platformId"
                   v-validate="'min_value:1'">
             <option value="0" disabled>
               {{ $t('games.addGame.placeholders.platform') }}
@@ -63,7 +63,7 @@
           </Label>
           <input name="numberOfHoursToComplete"
                  type="number"
-                 v-model="game.numberOfHoursToComplete"
+                 v-model.number="game.numberOfHoursToComplete"
                  v-validate="'required|min_value:0'" />
           <ErrorMessage v-show="errors.has('numberOfHoursToComplete')">
             {{ errors.first('numberOfHoursToComplete') }}
@@ -74,7 +74,7 @@
             {{ $t('games.addGame.labels.priority') }}
           </Label>
           <select name="priority"
-                  v-model="game.priority"
+                  v-model.number="game.priority"
                   v-validate="'min_value:1'">
             <option value="0" disabled>
               {{ $t('games.addGame.placeholders.priority') }}
@@ -122,18 +122,13 @@
       }
     },
     methods: {
-      saveGame: function(event) {
-        event.preventDefault();
-
+      saveGame: function() {
         this.$validator.validate().then(isValid => {
           if (isValid) {
             this.$store.dispatch(AddGameStoreKeys.Actions.SaveGame, {
               ...this.game,
               dateCreated: new Date().toISOString(),
-              numberOfHoursToComplete: Number(this.game.numberOfHoursToComplete),
-              numberOfHoursPlayed: 0,
-              platformId: Number(this.game.platformId),
-              priority: Number(this.game.priority)
+              numberOfHoursPlayed: 0
             });
           }
         });

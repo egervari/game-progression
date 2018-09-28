@@ -1,6 +1,6 @@
 <template>
   <form id="edit-profile"
-        @submit="saveProfile">
+        @submit.prevent="saveProfile">
     <Pane>
       <SectionHeader>{{ $t('profile.editProfile.title') }}</SectionHeader>
       <Actions>
@@ -37,7 +37,7 @@
         </FormField>
         <FormField>
           <Label>{{ $t('profile.editProfile.labels.language') }}</Label>
-          <select v-model="profile.languageId">
+          <select v-model.number="profile.languageId">
             <option value="0" disabled>
               {{ $t('profile.editProfile.placeholders.language') }}
             </option>
@@ -54,7 +54,7 @@
                  type="number"
                  min="0"
                  v-validate="'required|min_value:0'"
-                 v-model="profile.averageNumberOfHoursPerDay" />
+                 v-model.number="profile.averageNumberOfHoursPerDay" />
           <ErrorMessage v-show="errors.has('averageNumberOfHoursPerDay')">
             {{ errors.first('averageNumberOfHoursPerDay') }}
           </ErrorMessage>
@@ -90,16 +90,10 @@
       }
     },
     methods: {
-      saveProfile: function(event) {
-        event.preventDefault();
-
+      saveProfile: function() {
         this.$validator.validate().then(isValid => {
           if (isValid) {
-            this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, {
-              ...this.profile,
-              averageNumberOfHoursPerDay: Number(this.profile.averageNumberOfHoursPerDay),
-              languageId: Number(this.profile.languageId)
-            });
+            this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, this.profile);
           }
         });
       },
