@@ -55,13 +55,12 @@
     },
     {
       "id": 2,
-      "dateCreated": "2018-09-11T14:07:46+00:00",
       "name": "Octopath Traveler",
       "image": "https://howlongtobeat.com/gameimages/53592_Octopath_Traveler.png",
       "platformId": 2,
-      "priority": 10,
       "numberOfHoursPlayed": 35,
       "numberOfHoursToComplete": 56,
+      "priority": 10,
       "isComplete": false
     },
     {

@@ -6,6 +6,7 @@ export const editGameService = {
   getGame: function(gameId, onSuccess, onFailure) {
     Vue.http.get(`games/${gameId}`)
       .then(response => response.json())
+      .then(game => new Game(game))
       .then(onSuccess)
       .catch(onFailure);
   },
