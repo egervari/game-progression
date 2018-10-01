@@ -10,8 +10,7 @@
                 variant="save">
           {{ $t('games.addGame.actions.save') }}
         </Button>
-        <Button variant="normal"
-                @click="goToGames()">
+        <Button @click="goToGames()">
           {{ $t('games.addGame.actions.cancel') }}
         </Button>
       </Actions>

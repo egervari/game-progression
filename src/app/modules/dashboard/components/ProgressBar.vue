@@ -20,7 +20,10 @@
       },
       type: {
         type: String,
-        default: 'unfinished'
+        default: 'unfinished',
+        validator: function(value) {
+          return ['unfinished', 'finished'].includes(value);
+        }
       }
     }
   }

@@ -8,8 +8,7 @@
               variant="save">
         {{ $t('games.editGame.actions.save') }}
       </Button>
-      <Button variant="normal"
-              @click="$emit('cancelled')">
+      <Button @click="$emit('cancelled')">
         {{ $t('games.editGame.actions.cancel') }}
       </Button>
     </Actions>

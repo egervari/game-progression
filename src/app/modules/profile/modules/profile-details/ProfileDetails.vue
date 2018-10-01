@@ -2,8 +2,7 @@
   <section id="profile">
     <Pane>
       <SectionHeader>{{ $t('profile.profileDetails.title' )}}</SectionHeader>
-      <Button variant="normal"
-              @click="goToEditProfile()">
+      <Button @click="goToEditProfile()">
         {{ $t('profile.profileDetails.actions.edit' )}}
       </Button>
     </Pane>

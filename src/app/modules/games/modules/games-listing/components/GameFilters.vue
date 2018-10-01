@@ -60,8 +60,7 @@
     </FormField>
 
     <Actions>
-      <Button variant="normal"
-              @click="goToAddGame()">
+      <Button @click="goToAddGame()">
         {{ $t('games.gamesListing.actions.addGame') }}
       </Button>
       <Button variant="warn"

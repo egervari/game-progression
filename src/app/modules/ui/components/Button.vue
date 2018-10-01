@@ -17,7 +17,10 @@
       },
       variant: {
         type: String,
-        default: 'normal'
+        default: 'normal',
+        validator: function(value) {
+          return ['normal', 'save', 'warn'].includes(value);
+        }
       },
       disabled: {
         type: Boolean,

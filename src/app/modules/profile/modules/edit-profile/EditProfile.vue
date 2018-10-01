@@ -8,8 +8,7 @@
                 variant="save">
           {{ $t('profile.editProfile.actions.save') }}
         </Button>
-        <Button variant="normal"
-                @click="goToProfile()">
+        <Button @click="goToProfile()">
           {{ $t('profile.editProfile.actions.cancel') }}
         </Button>
       </Actions>
