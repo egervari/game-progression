@@ -14,7 +14,11 @@
   export default {
     name: 'GameCards',
     components: {GameCard},
-    props: ['games', 'platforms', 'gameSelections'],
+    props: {
+      games: Array,
+      platforms: Array,
+      gameSelections: Object
+    },
     methods: {
       isGameSelected: function(gameId) {
         return this.gameSelections[gameId];

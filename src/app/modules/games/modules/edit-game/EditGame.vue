@@ -71,6 +71,7 @@
   import Label from "@/app/modules/ui/components/Label";
   import ErrorMessage from "@/app/modules/ui/components/ErrorMessage";
   import {Game} from "@/app/models/game";
+
   export default {
     name: 'EditGame',
     components: {ErrorMessage, Label, FormField, FormGroup, Button, Actions, SectionHeader, Pane},
@@ -79,8 +80,9 @@
     },
     computed: {
       game: function() {
-        return this.$store.state.gamesState.editGameState.game;
+        return { ...this.$store.state.gamesState.editGameState.game };
       },
+
       priorityNumbers: function() {
         return Game.getPriorityArray();
       }

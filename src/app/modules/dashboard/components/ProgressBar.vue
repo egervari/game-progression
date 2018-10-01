@@ -9,7 +9,20 @@
 <script>
   export default {
     name: 'ProgressBar',
-    props: ['value', 'total', 'type']
+    props: {
+      value: {
+        type: Number,
+        default: 0
+      },
+      total: {
+        type: Number,
+        default: 100
+      },
+      type: {
+        type: String,
+        default: 'unfinished'
+      }
+    }
   }
 </script>
 

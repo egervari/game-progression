@@ -3,7 +3,7 @@
     <article v-if="profile">
       <p>
         <strong>{{ $t('profile.profileDetails.labels.name') }}: </strong>
-        <Emphasis>{{ fullName }}</Emphasis>
+        <Emphasis>{{ profile.fullName }}</Emphasis>
       </p>
       <p>
         <strong>{{ $t('profile.profileDetails.labels.language') }}: </strong>
@@ -22,14 +22,15 @@
   import Emphasis from "@/app/modules/ui/components/Emphasis";
   import {Language} from "@/app/models/language";
   import {Profile} from "@/app/models/profile";
+
   export default {
     name: 'ProfileDetailsPane',
     components: {Emphasis, Pane},
-    props: ['profile', 'languages'],
+    props: {
+      profile: Profile,
+      languages: Array
+    },
     computed: {
-      fullName: function() {
-        return Profile.getFullName(this.profile);
-      },
       language: function() {
         return Language.getLanguageById(this.languages, this.profile.languageId)
       }

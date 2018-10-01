@@ -14,10 +14,23 @@
   import GameCardCompletionIndicator from "@/app/modules/games/modules/games-listing/components/GameCardCompletionIndicator";
   import GameCardDetails from "@/app/modules/games/modules/games-listing/components/GameCardDetails";
   import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
+  import {Game} from "@/app/models/game";
+
   export default {
     name: 'GameCard',
     components: {GameCardDetails, GameCardCompletionIndicator},
-    props: ['game', 'platforms', 'selected'],
+    props: {
+      game: {
+        required: true,
+        type: Game
+      },
+      platforms: {
+        required: true
+      },
+      selected: {
+        required: true
+      }
+    },
     computed: {
       classes: function() {
         return 'game-card ' + (this.selected ? 'selected' : '')

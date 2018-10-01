@@ -84,7 +84,11 @@
   export default {
     name: 'GameFilters',
     components: {Actions, Button, FormField, Label, Pane },
-    props: ['filters', 'platforms', 'numberOfSelections'],
+    props: {
+      filters: Object,
+      platforms: Array,
+      numberOfSelections: Number
+    },
     methods: {
       onPlatformFilterChanged: function(event) {
         this.$store.dispatch(GamesListingStoreKeys.Actions.SetPlatformFilter, Number(event.target.value));

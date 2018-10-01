@@ -7,12 +7,17 @@
 
   export default {
     name: 'GameCardCompletionIndicator',
-    props: ['game'],
+    props: {
+      game: {
+        type: Game,
+        required: true
+      }
+    },
     computed: {
       type: function() {
         if (this.game.isComplete) {
           return 'complete';
-        } else if (Game.isGameInProgress(this.game)) {
+        } else if (this.game.isInProgress) {
           return 'in-progress';
         } else {
           return 'not-started';

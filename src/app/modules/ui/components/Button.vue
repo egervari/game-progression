@@ -1,7 +1,7 @@
 <template>
   <button v-bind:class="classes"
           v-bind:disabled="disabled"
-          v-bind:type="buttonType"
+          v-bind:type="type"
           @click="$emit('click')">
     <slot></slot>
   </button>
@@ -10,15 +10,24 @@
 <script>
   export default {
     name: 'Button',
-    props: ['type', 'variant', 'disabled'],
+    props: {
+      type: {
+        type: String,
+        default: 'button'
+      },
+      variant: {
+        type: String,
+        default: 'normal'
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
+    },
     events: ['click'],
     computed: {
       classes: function () {
         return 'button ' + (this ? this.variant : '');
-      },
-
-      buttonType: function() {
-        return this.type ? this.type : 'button';
       }
     }
   }

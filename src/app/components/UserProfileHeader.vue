@@ -1,22 +1,16 @@
 <template>
   <section id="user-profile-header"
+           v-if="profile"
            @click="goToProfile()">
     <img src="../assets/profile-image.jpg" />
-    {{ fullName }}
+    {{ profile.fullName }}
   </section>
 </template>
 
 <script>
-  import {Profile} from "@/app/models/profile";
-
   export default {
     name: 'UserProfileHeader',
     props: ['profile'],
-    computed: {
-      fullName: function() {
-        return Profile.getFullName(this.profile);
-      }
-    },
     methods: {
       goToProfile: function() {
         this.$router.replace('/profile/details');

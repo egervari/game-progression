@@ -12,8 +12,7 @@
         <Emphasis>{{ numberOfUnfinishedGames }}</Emphasis>
       </p>
       <ProgressBar v-bind:value="numberOfUnfinishedGames"
-                   v-bind:total="numberOfTotalGames"
-                   type="unfinished">
+                   v-bind:total="numberOfTotalGames">
       </ProgressBar>
       <p>
         <strong>{{ $t('dashboard.labels.numberOfFinishedGames') }}: </strong>
@@ -37,7 +36,11 @@
   export default {
     name: 'DashboardStatistics',
     components: {Emphasis, PaneHeader, Pane, ProgressBar },
-    props: ['games'],
+    props: {
+      games: {
+        required: true
+      }
+    },
     computed: {
       totalDaysRemaining: function() {
         return Game.getTotalDaysRemaining(this.games);

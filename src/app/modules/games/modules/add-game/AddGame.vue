@@ -64,7 +64,7 @@
           <input name="numberOfHoursToComplete"
                  type="number"
                  v-model.number="game.numberOfHoursToComplete"
-                 v-validate="'required|min_value:0'" />
+                 v-validate="'required|min_value:1'" />
           <ErrorMessage v-show="errors.has('numberOfHoursToComplete')">
             {{ errors.first('numberOfHoursToComplete') }}
           </ErrorMessage>
@@ -110,7 +110,7 @@
     components: {ErrorMessage, Label, FormField, FormGroup, Button, Actions, SectionHeader, Pane},
     data: function() {
       return {
-        game: Game.createGame()
+        game: new Game()
       }
     },
     computed: {

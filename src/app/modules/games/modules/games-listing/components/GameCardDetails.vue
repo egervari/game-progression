@@ -15,18 +15,27 @@
 
 <script>
   import Emphasis from "@/app/modules/ui/components/Emphasis";
-  import {Game} from "@/app/models/game";
   import {Platform} from "@/app/modules/games/models/platform";
+  import {Game} from "@/app/models/game";
+
   export default {
     name: 'GameCardDetails',
     components: {Emphasis},
-    props: ['game', 'platforms'],
+    props: {
+      game: {
+        type: Game,
+        required: true
+      },
+      platforms: {
+        required: true
+      }
+    },
     computed: {
       estimatedCompletion: function() {
         if (this.game.isComplete) {
           return 100;
         } else {
-          return Game.getEstimatedCompletion(this.game);
+          return this.game.estimatedCompletionPercentage;
         }
       }
     },
