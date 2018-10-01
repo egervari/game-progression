@@ -11,15 +11,15 @@
         <strong>{{ $t('dashboard.labels.numberOfUnfinishedGames') }}: </strong>
         <Emphasis>{{ numberOfUnfinishedGames }}</Emphasis>
       </p>
-      <ProgressBar v-bind:value="numberOfUnfinishedGames"
-                   v-bind:total="numberOfTotalGames">
+      <ProgressBar :value="numberOfUnfinishedGames"
+                   :total="numberOfTotalGames">
       </ProgressBar>
       <p>
         <strong>{{ $t('dashboard.labels.numberOfFinishedGames') }}: </strong>
         <Emphasis>{{ numberOfFinishedGames }}</Emphasis>
       </p>
-      <ProgressBar v-bind:value="numberOfFinishedGames"
-                   v-bind:total="numberOfTotalGames"
+      <ProgressBar :value="numberOfFinishedGames"
+                   :total="numberOfTotalGames"
                    type="finished">
       </ProgressBar>
     </section>

@@ -48,8 +48,8 @@
               {{ $t('games.addGame.placeholders.platform') }}
             </option>
             <option v-for="platform in platforms"
-                    v-bind:key="platform.id"
-                    v-bind:value="platform.id">
+                    :key="platform.id"
+                    :value="platform.id">
               {{ platform.name }}
             </option>
           </select>
@@ -80,8 +80,8 @@
               {{ $t('games.addGame.placeholders.priority') }}
             </option>
             <option v-for="number in priorityNumbers"
-                    v-bind:key="number"
-                    v-bind:value="number">
+                    :key="number"
+                    :value="number">
               {{ number }}
             </option>
           </select>

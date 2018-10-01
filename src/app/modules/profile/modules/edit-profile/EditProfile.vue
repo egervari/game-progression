@@ -42,8 +42,8 @@
               {{ $t('profile.editProfile.placeholders.language') }}
             </option>
             <option v-for="language in languages"
-                    v-bind:key="language.id"
-                    v-bind:value="language.id">
+                    :key="language.id"
+                    :value="language.id">
               {{ language.name }}
             </option>
           </select>

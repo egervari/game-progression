@@ -1,10 +1,10 @@
 <template>
   <section id="game-listing">
     <GameCard v-for="game in games"
-              v-bind:key="game.id"
-              v-bind:game="game"
-              v-bind:selected="isGameSelected(game.id)"
-              v-bind:platforms="platforms">
+              :key="game.id"
+              :game="game"
+              :selected="isGameSelected(game.id)"
+              :platforms="platforms">
     </GameCard>
   </section>
 </template>

@@ -2,9 +2,9 @@
   <article :class="classes"
            @click="selectGame()"
            @dblclick="goToEditGame()">
-    <GameCardCompletionIndicator v-bind:game="game"></GameCardCompletionIndicator>
-    <GameCardDetails v-bind:game="game"
-                     v-bind:platforms="platforms">
+    <GameCardCompletionIndicator :game="game"></GameCardCompletionIndicator>
+    <GameCardDetails :game="game"
+                     :platforms="platforms">
     </GameCardDetails>
     <img :src="game.image" />
   </article>

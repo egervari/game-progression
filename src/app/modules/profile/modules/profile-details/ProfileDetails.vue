@@ -9,8 +9,8 @@
     </Pane>
 
     <ProfileDetailsPane v-if="profile"
-                        v-bind:profile="profile"
-                        v-bind:languages="languages">
+                        :profile="profile"
+                        :languages="languages">
     </ProfileDetailsPane>
   </section>
 </template>

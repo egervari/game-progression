@@ -1,7 +1,7 @@
 <template>
   <header id="header">
     <h1>{{ $t('app.title') }}</h1>
-    <UserProfileHeader v-bind:profile="profile"></UserProfileHeader>
+    <UserProfileHeader :profile="profile"></UserProfileHeader>
   </header>
 </template>
 

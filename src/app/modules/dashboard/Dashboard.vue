@@ -4,7 +4,7 @@
       <SectionHeader>{{ $t('dashboard.title')}}</SectionHeader>
     </Pane>
 
-    <DashboardStatistics v-bind:games="games"></DashboardStatistics>
+    <DashboardStatistics :games="games"></DashboardStatistics>
   </section>
 </template>
 

@@ -38,8 +38,8 @@
               {{ $t('games.addGame.placeholders.priority') }}
             </option>
             <option v-for="number in priorityNumbers"
-                    v-bind:key="number"
-                    v-bind:value="number">
+                    :key="number"
+                    :value="number">
               {{ number }}
             </option>
           </select>

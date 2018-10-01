@@ -2,8 +2,8 @@
   <footer id="footer"
           v-if="profile">
     <span v-for="(language, index) in languages"
-          v-bind:key="language.id">
-      <a v-bind:class="getClass(language.id)"
+          :key="language.id">
+      <a :class="getClass(language.id)"
          @click="selectLanguage(language.id)">
         {{ language.name }}
       </a>

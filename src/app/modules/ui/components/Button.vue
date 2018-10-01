@@ -1,7 +1,7 @@
 <template>
-  <button v-bind:class="classes"
-          v-bind:disabled="disabled"
-          v-bind:type="type"
+  <button :class="classes"
+          :disabled="disabled"
+          :type="type"
           @click="$emit('click')">
     <slot></slot>
   </button>

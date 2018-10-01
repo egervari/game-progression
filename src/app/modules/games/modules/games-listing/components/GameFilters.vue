@@ -4,13 +4,13 @@
       <Label>
         {{ $t('games.gamesListing.labels.platform') }}
       </Label>
-      <select v-bind:value="filters.platform"
+      <select :value="filters.platform"
               v-on:change="onPlatformFilterChanged">
         <option value="0">
           {{ $t('games.gamesListing.filters.platform.all') }}
         </option>
         <option v-for="platform in platforms"
-                v-bind:key="platform.id"
+                :key="platform.id"
                 :value="platform.id">
           {{ platform.name }}
         </option>
@@ -21,7 +21,7 @@
       <Label>
         {{ $t('games.gamesListing.labels.completion' )}}
       </Label>
-      <select v-bind:value="filters.completion"
+      <select :value="filters.completion"
               v-on:change="onCompletionFilterChanged">
         <option value="all">
           {{ $t('games.gamesListing.filters.completion.all') }}
@@ -39,7 +39,7 @@
       <Label>
         {{ $t('games.gamesListing.labels.sort') }}
       </Label>
-      <select v-bind:value="filters.sortBy"
+      <select :value="filters.sortBy"
               v-on:change="onSortByChanged">
         <option value="priority">
           {{ $t('games.gamesListing.filters.sort.priority') }}
@@ -54,8 +54,8 @@
       <Label>
         {{ $t('games.gamesListing.labels.search') }}
       </Label>
-      <input v-bind:placeholder="$t('games.gamesListing.placeholders.searchText')"
-             v-bind:value="filters.searchText"
+      <input :placeholder="$t('games.gamesListing.placeholders.searchText')"
+             :value="filters.searchText"
              v-on:change="onSearchTextChanged" />
     </FormField>
 
@@ -65,7 +65,7 @@
         {{ $t('games.gamesListing.actions.addGame') }}
       </Button>
       <Button variant="warn"
-              v-bind:disabled="isDeleteDisabled()"
+              :disabled="isDeleteDisabled()"
               @click="deleteSelectedGames()">
         {{ $t('games.gamesListing.actions.deleteGames', [numberOfSelections]) }}
       </Button>

@@ -1,12 +1,12 @@
 <template>
   <section id="games-listing">
-    <GameFilters v-bind:filters="filters"
-                 v-bind:platforms="platforms"
-                 v-bind:numberOfSelections="numberOfSelections">
+    <GameFilters :filters="filters"
+                 :platforms="platforms"
+                 :numberOfSelections="numberOfSelections">
     </GameFilters>
-    <GameCards v-bind:games="games"
-               v-bind:platforms="platforms"
-               v-bind:game-selections="gameSelections">
+    <GameCards :games="games"
+               :platforms="platforms"
+               :game-selections="gameSelections">
     </GameCards>
   </section>
 </template>
