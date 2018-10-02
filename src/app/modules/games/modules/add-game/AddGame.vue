@@ -94,19 +94,12 @@
 </template>
 
 <script>
-  import Pane from "@/app/modules/ui/components/Pane";
-  import SectionHeader from "@/app/modules/ui/components/SectionHeader";
-  import Actions from "@/app/modules/ui/components/Actions";
-  import Button from "@/app/modules/ui/components/Button";
-  import FormGroup from "@/app/modules/ui/components/FormGroup";
-  import FormField from "@/app/modules/ui/components/FormField";
   import {AddGameStoreKeys} from "@/app/modules/games/modules/add-game/add-game-store-keys";
-  import Label from "@/app/modules/ui/components/Label";
-  import ErrorMessage from "@/app/modules/ui/components/ErrorMessage";
   import {Game} from "@/app/models/game";
+
   export default {
     name: 'AddGame',
-    components: {ErrorMessage, Label, FormField, FormGroup, Button, Actions, SectionHeader, Pane},
+    components: {},
     data: function() {
       return {
         game: new Game()

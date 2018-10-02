@@ -18,14 +18,12 @@
 </template>
 
 <script>
-  import Pane from "@/app/modules/ui/components/Pane";
-  import Emphasis from "@/app/modules/ui/components/Emphasis";
   import {Language} from "@/app/models/language";
   import {Profile} from "@/app/models/profile";
 
   export default {
     name: 'ProfileDetailsPane',
-    components: {Emphasis, Pane},
+    components: {},
     props: {
       profile: Profile,
       languages: Array

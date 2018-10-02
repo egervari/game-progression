@@ -73,16 +73,11 @@
 </template>
 
 <script>
-  import FormField from '../../../../ui/components/FormField';
-  import Label from '../../../../ui/components/Label';
-  import Pane from '../../../../ui/components/Pane';
-  import Button from "@/app/modules/ui/components/Button";
-  import Actions from "@/app/modules/ui/components/Actions";
   import {GamesListingStoreKeys} from "@/app/modules/games/modules/games-listing/games-listing-store-keys";
 
   export default {
     name: 'GameFilters',
-    components: {Actions, Button, FormField, Label, Pane },
+    components: {},
     props: {
       filters: Object,
       platforms: Array,

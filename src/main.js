@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import '@egervari/vue-ui-components';
 
 import App from './app/App.vue'
 import http from "./http";
@@ -16,3 +17,4 @@ new Vue({
   i18n,
   render: h => h(App)
 }).$mount('#app');
+

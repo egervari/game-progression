@@ -14,13 +14,12 @@
 </template>
 
 <script>
-  import Emphasis from "@/app/modules/ui/components/Emphasis";
   import {Platform} from "@/app/modules/games/models/platform";
   import {Game} from "@/app/models/game";
 
   export default {
     name: 'GameCardDetails',
-    components: {Emphasis},
+    components: {},
     props: {
       game: {
         type: Game,

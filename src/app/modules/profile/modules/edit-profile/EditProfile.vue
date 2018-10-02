@@ -64,18 +64,11 @@
 </template>
 
 <script>
-  import Pane from "@/app/modules/ui/components/Pane";
-  import SectionHeader from "@/app/modules/ui/components/SectionHeader";
-  import Button from "@/app/modules/ui/components/Button";
-  import Actions from "@/app/modules/ui/components/Actions";
-  import FormField from "@/app/modules/ui/components/FormField";
-  import Label from "@/app/modules/ui/components/Label";
-  import FormGroup from "@/app/modules/ui/components/FormGroup";
   import {EditProfileStoreKeys} from "@/app/modules/profile/modules/edit-profile/edit-profile-store-keys";
-  import ErrorMessage from "@/app/modules/ui/components/ErrorMessage";
+
   export default {
     name: 'EditProfile',
-    components: {ErrorMessage, FormGroup, Label, FormField, Actions, Button, SectionHeader, Pane},
+    components: {},
     data: function() {
       return {
         profile: {

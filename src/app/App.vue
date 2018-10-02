@@ -41,4 +41,5 @@
   @import 'styles/colors';
   @import 'styles/defaults';
   @import 'styles/forms';
+  @import '~@egervari/vue-ui-components/dist/vue-ui-components.css';
 </style>

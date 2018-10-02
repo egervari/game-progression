@@ -27,15 +27,12 @@
 </template>
 
 <script>
-  import Pane from '../../ui/components/Pane';
   import ProgressBar from './ProgressBar';
-  import PaneHeader from "@/app/modules/ui/components/PaneHeader";
-  import Emphasis from "@/app/modules/ui/components/Emphasis";
   import {Game} from "@/app/models/game";
 
   export default {
     name: 'DashboardStatistics',
-    components: {Emphasis, PaneHeader, Pane, ProgressBar },
+    components: { ProgressBar },
     props: {
       games: {
         required: true

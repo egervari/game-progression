@@ -44,16 +44,11 @@
 </template>
 
 <script>
-  import Pane from "@/app/modules/ui/components/Pane";
-  import FormGroup from "@/app/modules/ui/components/FormGroup";
-  import FormField from "@/app/modules/ui/components/FormField";
-  import Label from "@/app/modules/ui/components/Label";
-  import ErrorMessage from "@/app/modules/ui/components/ErrorMessage";
   import {Game} from "@/app/models/game";
 
   export default {
     name: 'EditGameForm',
-    components: {ErrorMessage, Label, FormField, FormGroup, Pane},
+    components: {},
     props: {
       value: {
         type: Game,

@@ -15,13 +15,11 @@
 </template>
 
 <script>
-  import Pane from "@/app/modules/ui/components/Pane";
-  import SectionHeader from "@/app/modules/ui/components/SectionHeader";
-  import Button from "@/app/modules/ui/components/Button";
   import ProfileDetailsPane from "@/app/modules/profile/modules/profile-details/components/ProfileDetailsPane";
+
   export default {
     name: 'ProfileDetails',
-    components: {ProfileDetailsPane, Button, SectionHeader, Pane},
+    components: {ProfileDetailsPane},
     computed: {
       profile: function() {
         return this.$store.state.profile;

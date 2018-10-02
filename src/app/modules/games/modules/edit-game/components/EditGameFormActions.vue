@@ -16,16 +16,11 @@
 </template>
 
 <script>
-  import Pane from "@/app/modules/ui/components/Pane";
-  import SectionHeader from "@/app/modules/ui/components/SectionHeader";
-  import Actions from "@/app/modules/ui/components/Actions";
-  import Button from "@/app/modules/ui/components/Button";
-
   import {Game} from "@/app/models/game";
 
   export default {
     name: 'EditGameFormActions',
-    components: {Button, Actions, SectionHeader, Pane},
+    components: {},
     props: {
       game: {
         type: Game,
