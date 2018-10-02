@@ -22,13 +22,17 @@ export class Game extends Model {
 
   get estimatedCompletionPercentage() {
     return Number(
-      Math.min(this.numberOfHoursPlayed / this.numberOfHoursToComplete * 100, 100)
+      Math.min(
+        (this.isComplete ? 1 : this.numberOfHoursPlayed / this.numberOfHoursToComplete) * 100,
+        100
+      )
     ).toFixed(1);
   }
 
   get numberOfHoursUnplayed() {
     return Math.max(
-      this.numberOfHoursToComplete - this.numberOfHoursPlayed, 0
+      this.isComplete ? 0 : this.numberOfHoursToComplete - this.numberOfHoursPlayed,
+      0
     );
   }
 
