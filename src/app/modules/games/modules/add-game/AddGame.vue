@@ -1,6 +1,6 @@
 <template>
   <form id="add-game"
-        @submit.prevent="saveGame">
+        @submit.prevent="saveGame(game)">
     <Pane>
       <SectionHeader>
         {{ $t('games.addGame.title' )}}
@@ -96,7 +96,7 @@
 <script>
   import {AddGameStoreKeys} from "@/app/modules/games/modules/add-game/add-game-store-keys";
   import {Game} from "@/app/models/game";
-
+const { Actions } = AddGameStoreKeys;
   export default {
     name: 'AddGame',
     components: {},
@@ -114,14 +114,17 @@
       }
     },
     methods: {
-      saveGame: function() {
+      saveGame: function(game) {
         this.$validator.validate().then(isValid => {
           if (isValid) {
-            this.$store.dispatch(AddGameStoreKeys.Actions.SaveGame, {
-              ...this.game,
+            this.$store.dispatch(Actions.SaveGame, {
+              ...game,
               dateCreated: new Date().toISOString(),
               numberOfHoursPlayed: 0
-            });
+            }).then(()=>{
+              this.$router.replace('/games/listing');
+              
+            })
           }
         });
       },

@@ -1,9 +1,8 @@
 import Vue from 'vue';
 
 export const addGameService = {
-  createGame: function(game, onSuccess, onFailure) {
-    Vue.http.post('games', game)
-      .then(onSuccess)
-      .catch(onFailure);
+  createGame: function(game) {
+    return Vue.http.post('games', game)
+    .then(r=>r.json());
   }
 };
