@@ -1,7 +1,7 @@
 export class Model {
-  id;
-
   constructor(id) {
-    this.id = id || null;
+    if (id) {
+      this.id = id;
+    }
   }
 }
