@@ -121,7 +121,7 @@
               ...this.game,
               dateCreated: new Date().toISOString(),
               numberOfHoursPlayed: 0
-            });
+            }).then(() => this.$router.replace('/games/listing'));
           }
         });
       },

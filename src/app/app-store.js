@@ -36,30 +36,25 @@ export const appStore = {
   },
   actions: {
     [AppStoreKeys.Actions.RetrieveLanguages]: function({ commit }) {
-      appService.getLanguages(
-        languages => commit(AppStoreKeys.Mutations.RetrieveLanguagesSuccess, languages),
-        error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error)
-      );
+      return appService.getLanguages()
+        .then(languages => commit(AppStoreKeys.Mutations.RetrieveLanguagesSuccess, languages))
+        .catch(error => commit(AppStoreKeys.Mutations.RetrieveLanguagesFailure, error));
     },
     [AppStoreKeys.Actions.RetrieveProfile]: function({ commit, state }) {
-      appService.getProfile(
-        profile => {
+      return appService.getProfile()
+        .then(profile => {
           commit(AppStoreKeys.Mutations.RetrieveProfileSuccess, profile);
           appService.setLocale(state.languages, profile.languageId);
-        },
-        error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error)
-      );
+        })
+        .catch(error => commit(AppStoreKeys.Mutations.RetrieveProfileFailure, error));
     },
     [AppStoreKeys.Actions.SelectLanguage]: function({ commit, state }, languageId) {
-      appService.setLanguage(
-        state.profile,
-        languageId,
-        () => {
+      return appService.setLanguage(state.profile, languageId)
+        .then(() => {
           commit(AppStoreKeys.Mutations.SetLanguageSuccess, languageId);
           appService.setLocale(state.languages, languageId);
-        },
-        error => commit(AppStoreKeys.Mutations.SetLanguageFailure, error)
-      );
+        })
+        .catch(error => commit(AppStoreKeys.Mutations.SetLanguageFailure, error));
     }
   }
 };

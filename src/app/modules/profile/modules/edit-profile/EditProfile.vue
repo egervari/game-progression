@@ -85,7 +85,8 @@
       saveProfile: function() {
         this.$validator.validate().then(isValid => {
           if (isValid) {
-            this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, this.profile);
+            this.$store.dispatch(EditProfileStoreKeys.Actions.SaveProfile, this.profile)
+              .then(() => this.$router.replace('/profile/details'));
           }
         });
       },

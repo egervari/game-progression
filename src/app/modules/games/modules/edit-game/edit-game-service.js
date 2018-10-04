@@ -3,19 +3,15 @@ import Vue from 'vue';
 import {Game} from "@/app/models/game";
 
 export const editGameService = {
-  getGame: function(gameId, onSuccess, onFailure) {
-    Vue.http.get(`games/${gameId}`)
+  getGame: function(gameId) {
+    return Vue.http.get(`games/${gameId}`)
       .then(response => response.json())
-      .then(game => new Game(game))
-      .then(onSuccess)
-      .catch(onFailure);
+      .then(game => new Game(game));
   },
 
-  updateGame: function(game, onSuccess, onFailure) {
-    Vue.http.put(`games/${game.id}`, game)
+  updateGame: function(game) {
+    return Vue.http.put(`games/${game.id}`, game)
       .then(response => response.json())
-      .then(game => new Game(game))
-      .then(onSuccess)
-      .catch(onFailure);
+      .then(game => new Game(game));
   }
 };

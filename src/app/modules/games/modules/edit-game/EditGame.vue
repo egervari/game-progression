@@ -40,7 +40,8 @@
       saveGame: function() {
         this.$validator.validate().then(isValid => {
           if (isValid) {
-            this.$store.dispatch(EditGameStoreKeys.Actions.UpdateGame, this.modifiedGame);
+            this.$store.dispatch(EditGameStoreKeys.Actions.UpdateGame, this.modifiedGame)
+              .then(() => this.$router.replace('/games/listing'));
           }
         });
       },

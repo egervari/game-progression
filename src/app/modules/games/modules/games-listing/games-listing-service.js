@@ -3,8 +3,8 @@ import Vue from 'vue';
 import {Game} from "@/app/models/game";
 
 export const gamesListingService = {
-  getGames: function(filters, onSuccess, onFailure) {
-    Vue.http.get(
+  getGames: function(filters) {
+    return Vue.http.get(
       'games?' +
       `_sort=${filters.sortBy}&_order=desc&` +
       (filters.platform ? `platformId=${filters.platform}&` : '') +
@@ -13,16 +13,14 @@ export const gamesListingService = {
       (filters.searchText.length > 0 ? `name_like=${filters.searchText}&` : '')
     )
       .then(response => response.json())
-      .then(games => games.map(game => new Game(game)))
-      .then(onSuccess)
-      .catch(onFailure);
+      .then(games => games.map(game => new Game(game)));
   },
 
-  deleteGames: function(gameSelections, onSuccess) {
-    Promise.all(
+  deleteGames: function(gameSelections) {
+    return Promise.all(
       Object.keys(gameSelections)
         .filter(key => gameSelections[key])
         .map(key => Vue.http.delete(`games/${key}`))
-    ).then(onSuccess);
+    );
   }
 };

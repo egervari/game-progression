@@ -15,10 +15,9 @@ export default {
   },
   actions: {
     [DashboardStoreKeys.Actions.RetrieveDashboardGames]: function({ commit }) {
-      dashboardService.getGames(
-        games => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess, games),
-        error => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure, error)
-      );
+      return dashboardService.getGames()
+        .then(games => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesSuccess, games))
+        .catch(error => commit(DashboardStoreKeys.Mutations.RetrieveDashboardGamesFailure, error));
     }
   }
 };

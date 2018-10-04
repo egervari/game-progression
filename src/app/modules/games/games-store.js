@@ -23,9 +23,9 @@ export default {
   },
   actions: {
     [GamesStoreKeys.Actions.RetrievePlatforms]: function({ commit }) {
-      gamesService.getPlatforms(
-        (platforms) => commit(GamesStoreKeys.Mutations.RetrievePlatformsSuccess, platforms),
-        (error) => commit(GamesStoreKeys.Mutations.RetrievePlatformsFailure, error)
+      return gamesService.getPlatforms()
+        .then(platforms => commit(GamesStoreKeys.Mutations.RetrievePlatformsSuccess, platforms))
+        .catch(error => commit(GamesStoreKeys.Mutations.RetrievePlatformsFailure, error)
       );
     }
   }

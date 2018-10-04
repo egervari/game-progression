@@ -5,28 +5,23 @@ import {Language} from "@/app/models/language";
 import {Profile} from "@/app/models/profile";
 
 export const appService = {
-  getLanguages: function(onSuccess, onFailure) {
-    Vue.http.get('languages')
+  getLanguages: function() {
+    return Vue.http.get('languages')
       .then(response => response.json())
-      .then(languages => languages.map(language => new Language(language)))
-      .then(onSuccess)
-      .catch(onFailure);
+      .then(languages => languages.map(language => new Language(language)));
   },
 
-  getProfile: function(onSuccess, onFailure) {
-    Vue.http.get('profile')
+  getProfile: function() {
+    return Vue.http.get('profile')
       .then(response => response.json())
-      .then(profile => new Profile(profile))
-      .then(onSuccess)
-      .catch(onFailure);
+      .then(profile => new Profile(profile));
   },
 
-  setLanguage: function(profile, languageId, onSuccess, onFailure) {
-    Vue.http.put('profile', {
+  setLanguage: function(profile, languageId) {
+    return Vue.http.put('profile', {
       ...profile,
       languageId
-    }).then(onSuccess)
-      .catch(onFailure);
+    });
   },
 
   setLocale: function(languages, languageId) {

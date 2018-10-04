@@ -1,5 +1,3 @@
-import Router from '../../../../../router';
-
 import {EditGameStoreKeys} from "@/app/modules/games/modules/edit-game/edit-game-store-keys";
 import {editGameService} from "@/app/modules/games/modules/edit-game/edit-game-service";
 
@@ -23,21 +21,14 @@ export default {
   },
   actions: {
     [EditGameStoreKeys.Actions.RetrieveGame]: function({ commit }, gameId) {
-      editGameService.getGame(
-        gameId,
-        game => commit(EditGameStoreKeys.Mutations.RetrieveGameSuccess, game),
-        error => commit(EditGameStoreKeys.Mutations.RetrieveGameFailure, error)
-      );
+      return editGameService.getGame(gameId)
+        .then(game => commit(EditGameStoreKeys.Mutations.RetrieveGameSuccess, game))
+        .catch(error => commit(EditGameStoreKeys.Mutations.RetrieveGameFailure, error));
     },
     [EditGameStoreKeys.Actions.UpdateGame]: function({ commit }, game) {
-      editGameService.updateGame(
-        game,
-        game => {
-          commit(EditGameStoreKeys.Mutations.UpdateGameSuccess, game);
-          Router.replace('/games/listing');
-        },
-        error => commit(EditGameStoreKeys.Mutations.UpdateGameFailure, error)
-      )
+      return editGameService.updateGame(game)
+        .then(game => commit(EditGameStoreKeys.Mutations.UpdateGameSuccess, game))
+        .catch(error => commit(EditGameStoreKeys.Mutations.UpdateGameFailure, error));
     }
   }
 };
