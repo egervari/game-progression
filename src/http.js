@@ -8,4 +8,4 @@ export default {
   }
 };
 
-Vue.url.options.root = 'http://localhost:3000/api/v1';
+Vue.url.options.root = 'http://localhost:3000';
